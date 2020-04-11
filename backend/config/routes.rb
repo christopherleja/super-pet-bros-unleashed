@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   resources :moves
   resources :pets
-  
+  resources :joiners
 end
