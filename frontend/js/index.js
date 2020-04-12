@@ -20,7 +20,7 @@ function renderPet(petObj){
     petNameLi.append(petNameSpan)
     petList.append(petNameLi)
 
-    petNameLi.addEventListener("click", event => {
+    petNameLi.addEventListener("click", () => {
       displayPet(petObj)
     })
 }
