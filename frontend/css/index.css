@@ -13,7 +13,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: papayawhip;
-  height: 100vh;
+  height: 100%;
 }
 
 header{
@@ -47,24 +47,28 @@ header{
 .navbar-ul {
   list-style: none;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background-color: #61C9A8;
   height: 7vh;
   font-size: 2rem;
   margin: 0;
+
   top: 15vh;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  font-family: 'Russo One', sans-serif;
 }
 
 .navbar-ul li {
-  margin: auto;
+  margin-right: 40px;
 }
 
 footer {
   font-size: 2rem;
   font-family: 'Bebas Neue', cursive;
   bottom: 0;
-  position: absolute;
-  margin: 0;
+  position: fixed;
+  background-color: #61C9A8;
+  width: 100%;
+  border-top: 1px solid black;
 }
