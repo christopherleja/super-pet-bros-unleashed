@@ -19,21 +19,25 @@ function renderPet(petObj){
 
     petNameLi.append(petNameSpan)
     petList.append(petNameLi)
-
-    petNameLi.addEventListener("click", event => {
-      displayPet(petObj)
-    })
 }
 
 function displayPet(petObj){
   petDetailDiv.innerHTML = `
-  <img class="pet-image" src="${petObj.pet_image_url}"><br />
-  <h2 id="pet-name">${petObj.name}</h2>
-  <ul class="pet-stat-ul">
-    <li>HP: ${petObj.hp}</li>
-    <li>Attack: ${petObj.attack}</li>
-    <li>Defense: ${petObj.defense}</li>
-    <li>Speed: ${petObj.speed}</li>
+  <img src="${petObj.pet_image_url}"><br />
+  <h2 id="pet-name">${petObj.name}</h2><br />
+  <ul>
+  <li>hp: ${petObj.hp}</li>
+  <li>attack: ${petObj.attack}</li>
+  <li>defense: ${petObj.defense}</li>
+  <li>speed: ${petObj.speed}</li>
   </ul>
   `
 }
+
+petList.addEventListener("click", e => {
+  console.log(e.target.id)
+  let targetPet = petArr.find(pet => {
+    return pet.id === parseInt(e.target.id)
+  })
+  displayPet(targetPet)
+})
