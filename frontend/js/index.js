@@ -2,8 +2,8 @@ const BASE_URL = "http://localhost:3000/"
 const petList = document.querySelector(".pets-ul")
 const mainRender = document.querySelector("#main-render")
 const movesArray = []
-
 const petDetailDiv = document.querySelector("#pet-details")
+
 fetch(BASE_URL + "pets")
     .then((response) => {
     return response.json();
