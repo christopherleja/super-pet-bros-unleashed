@@ -11,9 +11,14 @@ fetch(BASE_URL + "pets")
 
 function renderPet(petObj){
     let petNameLi = document.createElement('li')
+    let petNameSpan = document.createElement('span')
+    
+    petNameLi.append(petNameSpan)
     petNameLi.id = `${petObj.id}`
-    petNameLi.innerText = `${petObj.name}`
-
+    petNameSpan.innerText = `${petObj.name}`
+    petNameSpan.className = "pets-name-text"
+    petNameLi.className = "pets-li"
     petList.append(petNameLi)
 }
+
 
