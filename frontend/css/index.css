@@ -114,8 +114,13 @@ header{
   margin: auto;
   border-left: 1px solid black;
   border-right: 1px solid black;
+  display: flex;
 }
 
+.pets-ul {
+  display: flex;
+  flex-direction: column;
+}
 
 footer {
   font-size: 2rem;
