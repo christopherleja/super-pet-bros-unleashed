@@ -141,7 +141,6 @@ function renderBattle(playerPet, petObj){
     move1.addEventListener("click", function(e){
         e.preventDefault()
         console.log("you used " + `${player.moves[0].name}. It has ${player.moves[0].power} power and ${effectArray[petObj.moves[0].effect_target]} by ${petObj.moves[0].effect}%`)
-        console.log(player.moves)
     })
 
     move2.addEventListener("click", function(e){

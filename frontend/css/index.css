@@ -187,7 +187,7 @@ header{
 
 #pet-battle {
   display: none;
-  height: 40rem;
+  height: 45rem;
   width: 40rem;
 }
 
@@ -201,12 +201,20 @@ img#opponent {
   width: 13rem;
   height: 13rem;
   object-fit: cover;
+  border-radius: 25%;
 }
 
 div#player-pet-div {
   position: absolute;
   left: 19rem;
   bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+img#player{
+  border-radius: 25%;
 }
 
 .stats-container {
