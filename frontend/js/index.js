@@ -3,6 +3,7 @@ const petList = document.querySelector(".pets-ul")
 const mainRender = document.querySelector("#main-render")
 const movesArray = []
 const petDetailDiv = document.querySelector("#pet-details")
+const petCreateDiv = document.querySelector("#pet-create")
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
 
@@ -32,6 +33,7 @@ function renderPet(petObj){
 
   
 function displayPet(petObj) {
+  petCreateDiv.style.display = "none"
   petDetailDiv.style.display = "block"
   let effectArray = ["none", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponenent's attack", "increases attack", "restores hp"]
   
@@ -48,22 +50,26 @@ function displayPet(petObj) {
     <li>${petObj.moves[0].name}</li>
         <ul class="move-stats-ul">
             <li>Power: ${petObj.moves[0].power}</li>
-            <li>Effect: ${effectArray[petObj.moves[0].effect_target]} by ${petObj.moves[0].effect}%</li>
+            <li>Effect: ${effectArray[petObj.moves[0].effect_target]}</li>
+            <li>Effect Power: ${petObj.moves[0].effect}</li>
         </ul>
     <li>${petObj.moves[1].name}</li>
         <ul class="move-stats-ul">
             <li>Power: ${petObj.moves[1].power}</li>
-            <li>Effect: ${effectArray[petObj.moves[1].effect_target]} by ${petObj.moves[1].effect}%</li>
+            <li>Effect: ${effectArray[petObj.moves[1].effect_target]}</li>
+            <li>Effect Power: ${petObj.moves[1].effect}</li>
         </ul>
     <li>${petObj.moves[2].name}</li>
         <ul class="move-stats-ul">
             <li>Power: ${petObj.moves[2].power}</li>
-            <li>Effect: ${effectArray[petObj.moves[2].effect_target]} by ${petObj.moves[2].effect}%</li>
+            <li>Effect: ${effectArray[petObj.moves[2].effect_target]}</li>
+            <li>Effect Power: ${petObj.moves[2].effect}</li>
         </ul>
     <li>${petObj.moves[3].name}</li>
         <ul class="move-stats-ul">
             <li>Power: ${petObj.moves[3].power}</li>
-            <li>Effect: ${effectArray[petObj.moves[3].effect_target]} by ${petObj.moves[3].effect}%</li>
+            <li>Effect: ${effectArray[petObj.moves[3].effect_target]}</li>
+            <li>Effect Power: ${petObj.moves[3].effect}</li>
         </ul>
   `
 }

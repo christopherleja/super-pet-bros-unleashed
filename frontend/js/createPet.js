@@ -1,8 +1,9 @@
 function createPet() {
   petDetailDiv.style.display = "none"
-
-  const petCreateDiv = document.querySelector("#pet-create")
+  
+  
   petCreateDiv.style.display = "block"
+  
 
   const basePet = {
     name: "",
@@ -38,9 +39,9 @@ function createPet() {
         <option name="a2">Feisty Rascal</option>
         <option name="a3">Lazy Potato</option>
         <option name="a4">Energetic Bullet</option>
-        <option name="a4">Indifferent Neighbor</option>
-        <option name="a4">Aloof Sweetheart</option>
-        <option name="a4">Shy Baby</option>
+        <option name="a4">Indifferent Roommate</option>
+        <option name="a4">Shy Sweetheart</option>
+        <option name="a4">Fierce Coward</option>
       </select>
     </div>
 
@@ -117,28 +118,28 @@ function createPet() {
         modifier.speed = 4
         renderModifier()
         break;
-      case "Indifferent Neighbor":
-        modifier.name = "Indifferent Neighbor"
+      case "Indifferent Roommate":
+        modifier.name = "Indifferent Roommate"
         modifier.hp = 2
         modifier.attack = 2
         modifier.defense = 2
         modifier.speed = 1
         renderModifier()
         break;
-      case "Aloof Sweetheart":
-        modifier.name = "Aloof Sweetheart"
+      case "Shy Sweetheart":
+        modifier.name = "Shy Sweetheart"
         modifier.hp = 3
         modifier.attack = 1
         modifier.defense = 3
         modifier.speed = 0
         renderModifier()
         break;
-      case "Shy Baby":
-        modifier.name = "Shy Baby"
+      case "Fierce Coward":
+        modifier.name = "Fierce Coward"
         modifier.hp = 2
         modifier.attack = 1
-        modifier.defense = 3
-        modifier.speed = 1
+        modifier.defense = 1
+        modifier.speed = 3
         renderModifier()
         break;
     }
@@ -239,12 +240,12 @@ function createPet() {
     moves.forEach(move => renderMove(move))
   })
 
-  function renderMove () {
-    const moveLi = document.querySelector('li')
+  // function renderMove () {
+  //   const moveLi = document.querySelector('li')
+    
 
-
-    moveList.append(moveLi)
-  }
+  //   moveList.append(moveLi)
+  // }
 
 
   // const newPet = {
