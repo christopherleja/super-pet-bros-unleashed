@@ -62,7 +62,7 @@ header{
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   font-family: 'Russo One', sans-serif;
-  padding-right: 40px;
+  padding: 0 7rem;
 }
 
 .navbar-ul li {
@@ -159,7 +159,6 @@ header{
 
 #pet-details {
   margin: 3rem;
-
 }
 
 .pet-image {
@@ -168,17 +167,27 @@ header{
   object-fit: cover;
 }
 
-
 #pet-details {
   display: none;
 }
 
 #pet-create {
   display: none;
+  margin: 1rem 3rem;
 }
 
 #pet-battle {
   display: none;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.personality-stats {
+  margin-left: 1rem;
+  padding-top: 1px;
 }
 
 footer {

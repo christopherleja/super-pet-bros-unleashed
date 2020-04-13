@@ -1,11 +1,10 @@
-
 function createPet() {
   petDetailDiv.style.display = "none"
 
   const petCreateDiv = document.querySelector("#pet-create")
   petCreateDiv.style.display = "block"
 
-  const newPet = {
+  const basePet = {
     name: "",
     image_url: "",
     stat: 8,
@@ -15,43 +14,55 @@ function createPet() {
     speed: 5
   }
 
+  const modifier = {
+    name: "Personality Modifier",
+    hp: 0,
+    attack: 0,
+    defense: 0,
+    speed: 0,
+  }
+
+  
+
   petCreateDiv.innerHTML = `
+  <h1>Create your Battle Pet!</h1>
   <form class="pet-form">
-    <strong>Name:</strong><input type="text" class="name" name="name" /><br>
-    <strong>Image:</strong><input type="text" class="pet_image_url" name="pet_image_url" />
+    <strong>Name: </strong><input type="text" class="pet-name" name="name" /><br>
+    <strong>Image: </strong><input type="text" class="pet-image-url" name="pet_image_url" />
 
     <div id="pet-personality-behavior">
       <h3>What is your pet's personality?</h3>
       <select class="personality">
-        <option>-Select-</option>
-        <option name="a1">Affectionate</option>
-        <option name="a2">Feisty</option>
-        <option name="a3">Lazy</option>
-        <option name="a4">Energetic</option>
-        <option name="a4">Indifferent</option>
-        <option name="a4">Aloof</option>
-        <option name="a4">Shy</option>
-        <option name="a4">Clingy</option>
+        <option>--Select--</option>
+        <option name="a1">Affectionate Cuddler</option>
+        <option name="a2">Feisty Rascal</option>
+        <option name="a3">Lazy Potato</option>
+        <option name="a4">Energetic Bullet</option>
+        <option name="a4">Indifferent Neighbor</option>
+        <option name="a4">Aloof Sweetheart</option>
+        <option name="a4">Shy Baby</option>
       </select>
-
-      <h3>What is your pet's behavior?</h3>
-      <select class="behavior">
-        <option>-Select-</option>
-        <option name="b1">Cuddler</option>
-        <option name="b2">Rascal</option>
-        <option name="b3">Potato</option>
-        <option name="b4">Zoomie</option>
-      </select>
-      <h3 class="full-personality"></h3>
     </div>
 
-    <div class="assign-stats">
-      <h3>You have <span class="remaining-stat">${newPet.stat}</span> points to allot to stats</h3>
-        <p><strong>HP: </strong><button class="minus-hp">-</button><span name="hp"> ${newPet.hp} </span><button class="plus-hp">+</button></p>
-        <p><strong>Attack: </strong><button class="minus-attack">-</button><span name="attack"> ${newPet.attack} </span><button class="plus-attack">+</button></p>
-        <p><strong>Defense: </strong><button class="minus-defense">-</button><span name="defense"> ${newPet.defense} </span><button class="plus-defense">+</button></p>
-        <p><strong>Speed: </strong><button class="minus-speed">-</button><span name="speed"> ${newPet.speed} </span><button class="plus-speed">+</button></p>
-        <button class="default">Default</button><br>
+    <div class="stats-container">
+      <div class="assign-stats">
+        <h3>You have <span class="remaining-stat">${basePet.stat}</span> points |  </h3>
+          <p><strong>HP: </strong><button class="minus-hp">-</button><span name="hp"> ${basePet.hp} </span><button class="plus-hp">+</button></p>
+          <p><strong>Attack: </strong><button class="minus-attack">-</button><span name="attack"> ${basePet.attack} </span><button class="plus-attack">+</button></p>
+          <p><strong>Defense: </strong><button class="minus-defense">-</button><span name="defense"> ${basePet.defense} </span><button class="plus-defense">+</button></p>
+          <p><strong>Speed: </strong><button class="minus-speed">-</button><span name="speed"> ${basePet.speed} </span><button class="plus-speed">+</button></p>
+          <button class="default">Default</button><br>
+      </div>
+      <div class="personality-stats">
+        <h3 class="mod-name"> ${modifier.name}</h3>
+          <p class="mod-hp">+ ${modifier.hp}</p>
+          <p class="mod-attack">+ ${modifier.attack}</p>
+          <p class="mod-defense">+ ${modifier.defense}</p>
+          <p class="mod-speed">+ ${modifier.speed}</p>
+      </div>
+    </div>
+    <div class="move-container">
+      <ul class="move-list"></ul>
     </div>
     <button type="submit">CREATE!</button>
   </form>`
@@ -62,191 +73,188 @@ function createPet() {
   let attack = document.querySelector('[name="attack"]')
   let defense = document.querySelector('[name="defense"]')
   let speed = document.querySelector('[name="speed"]')
-  // let personality = 3;
-  // let behavior = 0;
+
+  let modname = document.querySelector('.mod-name')
+  let modhp = document.querySelector('.mod-hp')
+  let modattack = document.querySelector('.mod-attack')
+  let moddefense = document.querySelector('.mod-defense')
+  let modspeed = document.querySelector('.mod-speed')
+
+  const moveList = document.querySelector('.move-list')
 
   const personality = document.querySelector('.personality')
-  const behavior = document.querySelector('.behavior')
-  let modifier = 3
   personality.addEventListener("change", () => {
     switch (personality.value) {
-      case "Affectionate":
-        newPet.hp + modifier
-        hp.textContent = ` ${newPet.hp + modifier} `
-
-
-
+      case "Affectionate Cuddler":
+        modifier.name = "Affectionate Cuddler"
+        modifier.hp = 4
+        modifier.attack = 0
+        modifier.defense = 3
+        modifier.speed = 0
+        renderModifier()
         break;
-      case "Feisty":
-        newPet.attack += modifier
-        hp.textContent = ` ${newPet.hp} `
-        attack.textContent = ` ${newPet.attack + 3} `
-        defense.textContent = ` ${newPet.defense} `
-        speed.textContent = ` ${newPet.speed} `
+      case "Feisty Rascal":
+        modifier.name = "Feisty Rascal"
+        modifier.hp = 1
+        modifier.attack = 3
+        modifier.defense = 0
+        modifier.speed = 3
+        renderModifier()
         break;
-      case "Lazy":
-        // newPet.defense += 3
-        hp.textContent = ` ${newPet.hp} `
-        attack.textContent = ` ${newPet.attack} `
-        defense.textContent = ` ${newPet.defense + 3} `
-        speed.textContent = ` ${newPet.speed} `
+      case "Lazy Potato":
+        modifier.name = "Lazy Potato"
+        modifier.hp = 2
+        modifier.attack = 0
+        modifier.defense = 5
+        modifier.speed = 0
+        renderModifier()
         break;
-      case "Energetic":
-        // newPet.speed += 3
-        hp.textContent = ` ${newPet.hp} `
-        attack.textContent = ` ${newPet.attack} `
-        defense.textContent = ` ${newPet.defense} `
-        speed.textContent = ` ${newPet.speed + 3} `
+      case "Energetic Bullet":
+        modifier.name = "Energetic Bullet"
+        modifier.hp = 1
+        modifier.attack = 2
+        modifier.defense = 0
+        modifier.speed = 4
+        renderModifier()
         break;
-      case "Indifferent":
-        // newPet.attack += 4
-        // newPet.hp -= 2      
-        hp.textContent = ` ${newPet.hp - 1} `
-        attack.textContent = ` ${newPet.attack + 4} `
-        defense.textContent = ` ${newPet.defense} `
-        speed.textContent = ` ${newPet.speed} `
+      case "Indifferent Neighbor":
+        modifier.name = "Indifferent Neighbor"
+        modifier.hp = 2
+        modifier.attack = 2
+        modifier.defense = 2
+        modifier.speed = 1
+        renderModifier()
         break;
-      case "Aloof":
-        // newPet.defense += 4
-        // newPet.speed -= 2
-        hp.textContent = ` ${newPet.hp} `
-        attack.textContent = ` ${newPet.attack} `
-        defense.textContent = ` ${newPet.defense + 4} `
-        speed.textContent = ` ${newPet.speed - 1} `
+      case "Aloof Sweetheart":
+        modifier.name = "Aloof Sweetheart"
+        modifier.hp = 3
+        modifier.attack = 1
+        modifier.defense = 3
+        modifier.speed = 0
+        renderModifier()
         break;
-      case "Shy":
-        // newPet.speed += 4
-        // newPet.defense -= 2
-        hp.textContent = ` ${newPet.hp} `
-        attack.textContent = ` ${newPet.attack} `
-        defense.textContent = ` ${newPet.defense - 1} `
-        speed.textContent = ` ${newPet.speed + 4} `
-        break;
-      case "Clingy":
-        // newPet.hp += 4
-        // newPet.attack -= 2
-        hp.textContent = ` ${newPet.hp + 4} `
-        attack.textContent = ` ${newPet.attack - 1} `
-        defense.textContent = ` ${newPet.defense} `
-        speed.textContent = ` ${newPet.speed} `
+      case "Shy Baby":
+        modifier.name = "Shy Baby"
+        modifier.hp = 2
+        modifier.attack = 1
+        modifier.defense = 3
+        modifier.speed = 1
+        renderModifier()
         break;
     }
-  })
-
-  behavior.addEventListener("change", () => {
-    switch (behavior.value) {
-      case "Cuddler":
-        // newPet.hp += 3
-        hp.textContent = ` ${newPet.hp + 4} `
-        attack.textContent = ` ${newPet.attack} `
-        defense.textContent = ` ${newPet.defense} `
-        speed.textContent = ` ${newPet.speed} `
-        break;
-      case "Rascal":
-        // newPet.attack += 3
-        hp.textContent = ` ${newPet.hp} `
-        attack.textContent = ` ${newPet.attack + 4} `
-        defense.textContent = ` ${newPet.defense} `
-        speed.textContent = ` ${newPet.speed} `
-        break;
-      case "Potato":
-        // newPet.defense += 3
-        hp.textContent = ` ${newPet.hp} `
-        attack.textContent = ` ${newPet.attack} `
-        defense.textContent = ` ${newPet.defense + 4} `
-        speed.textContent = ` ${newPet.speed} `
-        break;
-      case "Zoomie":
-        // newPet.speed += 3
-        hp.textContent = ` ${newPet.hp} `
-        attack.textContent = ` ${newPet.attack} `
-        defense.textContent = ` ${newPet.defense} `
-        speed.textContent = ` ${newPet.speed + 4} `
-        break;
+    function renderModifier() {
+      modname.textContent = ` ${modifier.name}`
+      modhp.textContent = `+ ${modifier.hp}`
+      modattack.textContent = `+ ${modifier.attack}`
+      moddefense.textContent = `+ ${modifier.defense}`
+      modspeed.textContent = `+ ${modifier.speed}`
     }
   })
-    
   
   assignStats.addEventListener("click", event => {
     event.preventDefault()
 
     if(event.target.className === "plus-hp") {
-      if(newPet.stat > 0) {
-        newPet.stat -= 1
-        newPet.hp += 1
-        hp.textContent = ` ${newPet.hp} `
-        remainingStat.textContent = ` ${newPet.stat} `
+      if(basePet.stat > 0) {
+        basePet.stat -= 1
+        basePet.hp += 1
+        hp.textContent = ` ${basePet.hp} `
+        remainingStat.textContent = ` ${basePet.stat} `
       }
     } 
     else if(event.target.className === "minus-hp") {
-      if(newPet.hp > 1) {
-        newPet.stat += 1
-        newPet.hp -= 1
-        hp.textContent = ` ${newPet.hp} `
-        remainingStat.textContent = ` ${newPet.stat} `
+      if(basePet.hp > 1) {
+        basePet.stat += 1
+        basePet.hp -= 1
+        hp.textContent = ` ${basePet.hp} `
+        remainingStat.textContent = ` ${basePet.stat} `
       }
     }
     else if(event.target.className === "plus-attack") {
-      if(newPet.stat > 0 && newPet.attack < 30) {
-        newPet.stat -= 1
-        newPet.attack += 1
-        attack.textContent = ` ${newPet.attack} `
-        remainingStat.textContent = ` ${newPet.stat} `
+      if(basePet.stat > 0 && basePet.attack < 30) {
+        basePet.stat -= 1
+        basePet.attack += 1
+        attack.textContent = ` ${basePet.attack} `
+        remainingStat.textContent = ` ${basePet.stat} `
       }
     } 
     else if(event.target.className === "minus-attack") {
-      if(newPet.attack > 1) {
-        newPet.stat += 1
-        newPet.attack -= 1
-        attack.textContent = ` ${newPet.attack} `
-        remainingStat.textContent = ` ${newPet.stat} `
+      if(basePet.attack > 1) {
+        basePet.stat += 1
+        basePet.attack -= 1
+        attack.textContent = ` ${basePet.attack} `
+        remainingStat.textContent = ` ${basePet.stat} `
       }
     }
     else if(event.target.className === "plus-defense") {
-      if(newPet.stat > 0 && newPet.defense < 30) {
-        newPet.stat -= 1
-        newPet.defense += 1
-        defense.textContent = ` ${newPet.defense} `
-        remainingStat.textContent = ` ${newPet.stat} `
+      if(basePet.stat > 0 && basePet.defense < 30) {
+        basePet.stat -= 1
+        basePet.defense += 1
+        defense.textContent = ` ${basePet.defense} `
+        remainingStat.textContent = ` ${basePet.stat} `
       }
     } 
     else if(event.target.className === "minus-defense") {
-      if(newPet.defense > 1) {
-        newPet.stat += 1
-        newPet.defense -= 1
-        defense.textContent = ` ${newPet.defense} `
-        remainingStat.textContent = ` ${newPet.stat} `
+      if(basePet.defense > 1) {
+        basePet.stat += 1
+        basePet.defense -= 1
+        defense.textContent = ` ${basePet.defense} `
+        remainingStat.textContent = ` ${basePet.stat} `
       }
     }
     else if(event.target.className === "plus-speed") {
-      if(newPet.stat > 0 && newPet.speed < 30) {
-        newPet.stat -= 1
-        newPet.speed += 1
-        speed.textContent = ` ${newPet.speed} `
-        remainingStat.textContent = ` ${newPet.stat} `
+      if(basePet.stat > 0 && basePet.speed < 30) {
+        basePet.stat -= 1
+        basePet.speed += 1
+        speed.textContent = ` ${basePet.speed} `
+        remainingStat.textContent = ` ${basePet.stat} `
       }
     } 
     else if(event.target.className === "minus-speed") {
-      if(newPet.speed > 1) {
-        newPet.stat += 1
-        newPet.speed -= 1
-        speed.textContent = ` ${newPet.speed} `
-        remainingStat.textContent = ` ${newPet.stat} `
+      if(basePet.speed > 1) {
+        basePet.stat += 1
+        basePet.speed -= 1
+        speed.textContent = ` ${basePet.speed} `
+        remainingStat.textContent = ` ${basePet.stat} `
       }
     }
     else if(event.target.className === "default") {
-      newPet.stat = 8
-      newPet.hp = 25
-      newPet.attack = 5
-      newPet.defense = 5
-      newPet.speed = 5
-      remainingStat.textContent = ` ${newPet.stat} `
-      hp.textContent = ` ${newPet.hp} `
-      attack.textContent = ` ${newPet.attack} `
-      defense.textContent = ` ${newPet.defense} `
-      speed.textContent = ` ${newPet.speed} `
+      basePet.stat = 8
+      basePet.hp = 25
+      basePet.attack = 5
+      basePet.defense = 5
+      basePet.speed = 5
+      remainingStat.textContent = ` ${basePet.stat} `
+      hp.textContent = ` ${basePet.hp} `
+      attack.textContent = ` ${basePet.attack} `
+      defense.textContent = ` ${basePet.defense} `
+      speed.textContent = ` ${basePet.speed} `
     }
 
   })
+
+  fetch(BASE_URL + '/moves')
+  .then(response => response.json())
+  .then(moves => {
+    moves.forEach(move => renderMove(move))
+  })
+
+  function renderMove () {
+    const moveLi = document.querySelector('li')
+
+
+    moveList.append(moveLi)
+  }
+
+
+  // const newPet = {
+  //   name: 
+  //   pet_image_url:
+  //   hp:
+  //   attack:
+  //   defense:
+  //   speed:
+  //   moves:
+  // }
 
 }
