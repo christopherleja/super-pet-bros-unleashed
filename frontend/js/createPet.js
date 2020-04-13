@@ -1,6 +1,7 @@
 function createPet() {
   petDetailDiv.style.display = "none"
   welcomeDiv.style.display = "none"
+  petBattleDiv.style.display = "none"
   
   petCreateDiv.style.display = "block"
 
@@ -21,8 +22,6 @@ function createPet() {
     defense: 0,
     speed: 0,
   }
-
-  
 
   petCreateDiv.innerHTML = `
   <h1>Create your Battle Pet!</h1>

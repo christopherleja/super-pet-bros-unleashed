@@ -46,6 +46,7 @@ function displayWelcome() {
 function displayPet(petObj) {
     welcomeDiv.style.display = "none"
     petCreateDiv.style.display = "none"
+    petBattleDiv.style.display = "none"
     petDetailDiv.style.display = "block"
     let effectArray = ["none", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
     petDetailDiv.innerHTML = `
@@ -107,7 +108,9 @@ function displayPet(petObj) {
 }
 
 function renderBattle(playerPet, petObj){
+    welcomeDiv.style.display = "none"
     petDetailDiv.style.display = "none"
+    petCreateDiv.style.display = "none"
     let petBattleDiv = document.querySelector('#pet-battle')
     petBattleDiv.style.display = "block"
     let opponent = petObj
