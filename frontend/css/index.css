@@ -181,6 +181,24 @@ header{
   display: none;
 }
 
+div#opponent-div {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+img#opponent {
+  width: 14rem;
+  height: 14rem;
+  object-fit: cover;
+}
+
+div#player-pet-div {
+  position: absolute;
+  left: 17rem;
+  bottom: 1rem;
+}
+
 footer {
   font-size: 2rem;
   font-family: 'Bebas Neue', cursive;
