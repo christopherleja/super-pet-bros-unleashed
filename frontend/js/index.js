@@ -2,6 +2,9 @@ const BASE_URL = "http://localhost:3000/"
 const petList = document.querySelector(".pets-ul")
 const mainRender = document.querySelector("#main-render")
 const petDetailDiv = document.querySelector("#pet-details")
+const petCreateDiv = document.querySelector("#pet-create")
+const headers = document.querySelector("#headers")
+const welcomeDiv = document.querySelector("#welcome-page")
 const playerPet = []
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
@@ -31,8 +34,20 @@ function renderPet(petObj){
     })
 }
 
+
+headers.addEventListener("click", () => {
+  displayWelcome()
+})
+function displayWelcome() {
+    welcomeDiv.style.display = "block"
+    petCreateDiv.style.display = "none"
+    petDetailDiv.style.display = "none"
+}
   
 function displayPet(petObj) {
+    welcomeDiv.style.display = "none"
+    petCreateDiv.style.display = "none"
+    // petBattleDiv.style.display = "none"
     petDetailDiv.style.display = "block"
     petDetailDiv.innerHTML = `
     <img class="pet-image" src="${petObj['pet-image-url']}"><br />
@@ -93,7 +108,9 @@ function displayPet(petObj) {
 }
 
 function renderBattle(playerPet, petObj){
+    welcomeDiv.style.display = "none"
     petDetailDiv.style.display = "none"
+    petCreateDiv.style.display = "none"
     let petBattleDiv = document.querySelector('#pet-battle')
     petBattleDiv.style.display = "block"
     let opponent = petObj
@@ -103,14 +120,14 @@ function renderBattle(playerPet, petObj){
     opponentDiv.innerHTML = `
     <img class="pet-image" id="opponent" src="${opponent['pet-image-url']}"><br />
     <h2 id="pet-name">${opponent.name}</h2>
-    <h4 id="opponentHP">${opponent.hp}</h4>
+    <h4 id="opponentHP">HP: ${opponent.hp}</h4>
     `
     let playerPetDiv = document.createElement('div')
     playerPetDiv.id = "player-pet-div"
     playerPetDiv.innerHTML = `
     <img class="pet-image" id="player" src="${player['pet-image-url']}"><br />
     <h2 id="pet-name">${player.name}</h2>
-    <h4 id="playerHP">${player.hp}</h4>
+    <h4 id="playerHP">HP: ${player.hp}</h4>
     <button id="move1">${player.moves[0].name}</button>
     <button id="move2">${player.moves[1].name}</button>
     <button id="move3">${player.moves[2].name}</button>

@@ -80,4 +80,35 @@ assignStats.addEventListener("click", event => {
 
 })
 
-}
+behavior.addEventListener("change", () => {
+  switch (behavior.value) {
+    case "Cuddler":
+      // newPet.hp += 3
+      hp.textContent = ` ${newPet.hp + 4} `
+      attack.textContent = ` ${newPet.attack} `
+      defense.textContent = ` ${newPet.defense} `
+      speed.textContent = ` ${newPet.speed} `
+      break;
+    case "Rascal":
+      // newPet.attack += 3
+      hp.textContent = ` ${newPet.hp} `
+      attack.textContent = ` ${newPet.attack + 4} `
+      defense.textContent = ` ${newPet.defense} `
+      speed.textContent = ` ${newPet.speed} `
+      break;
+    case "Potato":
+      // newPet.defense += 3
+      hp.textContent = ` ${newPet.hp} `
+      attack.textContent = ` ${newPet.attack} `
+      defense.textContent = ` ${newPet.defense + 4} `
+      speed.textContent = ` ${newPet.speed} `
+      break;
+    case "Zoomie":
+      // newPet.speed += 3
+      hp.textContent = ` ${newPet.hp} `
+      attack.textContent = ` ${newPet.attack} `
+      defense.textContent = ` ${newPet.defense} `
+      speed.textContent = ` ${newPet.speed + 4} `
+      break;
+  }
+})

@@ -10,13 +10,12 @@
   font-family: 'Fira Sans Condensed', sans-serif;
 }
 
-body, html {
+body {
   margin: 0;
   padding: 0;
   background-image: url("./images/pixelbackground.jpg");
   background-repeat: repeat-y;
   background-size: cover;
-  height: 100%;
 }
 
 header{
@@ -62,7 +61,7 @@ header{
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   font-family: 'Russo One', sans-serif;
-  padding-right: 40px;
+  padding: 0 7rem;
 }
 
 .navbar-ul li {
@@ -115,19 +114,29 @@ header{
   background-color: #FFEEDB;
   background-size: cover;
   width: 90%;
-  height: 100%;
   margin: auto;
   border-left: 1px solid black;
   border-right: 1px solid black;
   display: flex;
   position: relative;
-  z-index: 0;
+}
+
+#main-render {
+  height: 100%;
+}
+
+#welcome-page {
+  margin: 3rem;
+  height: 100vh;
+}
+
+#headers {
+  cursor: pointer;
 }
 
 .pets-leftbar {
-  width: 16rem;
+  width: 18rem;
   border-right: 1px solid black;
-  height: 100vh;
 }
 
 .pets-ul {
@@ -136,7 +145,6 @@ header{
   margin: 0;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .pets-li {
@@ -159,7 +167,7 @@ header{
 
 #pet-details {
   margin: 3rem;
-
+  max-height: 100%;
 }
 
 .pet-image {
@@ -168,17 +176,19 @@ header{
   object-fit: cover;
 }
 
-
 #pet-details {
   display: none;
 }
 
 #pet-create {
   display: none;
+  margin: 1rem 3rem;
 }
 
 #pet-battle {
   display: none;
+  height: 40rem;
+  width: 40rem;
 }
 
 div#opponent-div {
@@ -188,15 +198,25 @@ div#opponent-div {
 }
 
 img#opponent {
-  width: 14rem;
-  height: 14rem;
+  width: 13rem;
+  height: 13rem;
   object-fit: cover;
 }
 
 div#player-pet-div {
   position: absolute;
-  left: 17rem;
+  left: 19rem;
   bottom: 1rem;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.personality-stats {
+  margin-left: 1rem;
+  padding-top: 1px;
 }
 
 footer {

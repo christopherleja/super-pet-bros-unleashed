@@ -21,7 +21,7 @@ move9 = Move.create(name: "Making Biscuits", power: 50, effect: 30, effect_targe
 
 move10 = Move.create(name: "Zoomies!", power: 40, effect: 100, effect_target: 4)
 move11 = Move.create(name: "Paw Slap", power: 70, effect: 1, effect_target: 0)
-move12 = Move.create(name: "Tackle", power: 50, effect: 1, effect_target: 0)
+move12 = Move.create(name: "Tackle", power: 70, effect: 1, effect_target: 0)
 
 move13 = Move.create(name: "Tippy Taps", power: 0, effect: 30, effect_target: 7)
 move14 = Move.create(name: "Sleep", power: 0, effect: 50, effect_target: 7)
