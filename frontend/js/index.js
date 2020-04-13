@@ -48,26 +48,22 @@ function displayPet(petObj) {
     <li>${petObj.moves[0].name}</li>
         <ul class="move-stats-ul">
             <li>Power: ${petObj.moves[0].power}</li>
-            <li>Effect: ${effectArray[petObj.moves[0].effect_target]}</li>
-            <li>Effect Power: ${petObj.moves[0].effect}</li>
+            <li>Effect: ${effectArray[petObj.moves[0].effect_target]} by ${petObj.moves[0].effect}%</li>
         </ul>
     <li>${petObj.moves[1].name}</li>
         <ul class="move-stats-ul">
             <li>Power: ${petObj.moves[1].power}</li>
-            <li>Effect: ${effectArray[petObj.moves[1].effect_target]}</li>
-            <li>Effect Power: ${petObj.moves[1].effect}</li>
+            <li>Effect: ${effectArray[petObj.moves[1].effect_target]} by ${petObj.moves[1].effect}%</li>
         </ul>
     <li>${petObj.moves[2].name}</li>
         <ul class="move-stats-ul">
             <li>Power: ${petObj.moves[2].power}</li>
-            <li>Effect: ${effectArray[petObj.moves[2].effect_target]}</li>
-            <li>Effect Power: ${petObj.moves[2].effect}</li>
+            <li>Effect: ${effectArray[petObj.moves[2].effect_target]} by ${petObj.moves[2].effect}%</li>
         </ul>
     <li>${petObj.moves[3].name}</li>
         <ul class="move-stats-ul">
             <li>Power: ${petObj.moves[3].power}</li>
-            <li>Effect: ${effectArray[petObj.moves[3].effect_target]}</li>
-            <li>Effect Power: ${petObj.moves[3].effect}</li>
+            <li>Effect: ${effectArray[petObj.moves[3].effect_target]} by ${petObj.moves[3].effect}%</li>
         </ul>
   `
 }
