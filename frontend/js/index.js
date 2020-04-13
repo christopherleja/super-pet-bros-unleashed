@@ -14,7 +14,6 @@ fetch(BASE_URL + "pets")
 });
 
 function renderPet(petObj){
-    console.log("in render pet, petObj is " + petObj)
     let petNameLi = document.createElement('li')
     let petNameSpan = document.createElement('span')
     

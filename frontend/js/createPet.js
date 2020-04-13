@@ -67,18 +67,18 @@ function createPet() {
 
   const personality = document.querySelector('.personality')
   const behavior = document.querySelector('.behavior')
-
+  let modifier = 3
   personality.addEventListener("change", () => {
     switch (personality.value) {
       case "Affectionate":
-        // newPet.hp += 3
-        hp.textContent = ` ${newPet.hp + 3} `
-        attack.textContent = ` ${newPet.attack} `
-        defense.textContent = ` ${newPet.defense} `
-        speed.textContent = ` ${newPet.speed} `
+        newPet.hp + modifier
+        hp.textContent = ` ${newPet.hp + modifier} `
+
+
+
         break;
       case "Feisty":
-        // newPet.attack += 3
+        newPet.attack += modifier
         hp.textContent = ` ${newPet.hp} `
         attack.textContent = ` ${newPet.attack + 3} `
         defense.textContent = ` ${newPet.defense} `
@@ -173,64 +173,64 @@ function createPet() {
     if(event.target.className === "plus-hp") {
       if(newPet.stat > 0) {
         newPet.stat -= 1
-        // newPet.hp += 1
-        hp.textContent = ` ${newPet.hp += 1} `
+        newPet.hp += 1
+        hp.textContent = ` ${newPet.hp} `
         remainingStat.textContent = ` ${newPet.stat} `
       }
     } 
     else if(event.target.className === "minus-hp") {
       if(newPet.hp > 1) {
         newPet.stat += 1
-        // newPet.hp -= 1
-        hp.textContent = ` ${newPet.hp -= 1} `
+        newPet.hp -= 1
+        hp.textContent = ` ${newPet.hp} `
         remainingStat.textContent = ` ${newPet.stat} `
       }
     }
     else if(event.target.className === "plus-attack") {
       if(newPet.stat > 0 && newPet.attack < 30) {
         newPet.stat -= 1
-        // newPet.attack += 1
-        attack.textContent = ` ${newPet.attack += 1} `
+        newPet.attack += 1
+        attack.textContent = ` ${newPet.attack} `
         remainingStat.textContent = ` ${newPet.stat} `
       }
     } 
     else if(event.target.className === "minus-attack") {
       if(newPet.attack > 1) {
         newPet.stat += 1
-        // newPet.attack -= 1
-        attack.textContent = ` ${newPet.attack -= 1} `
+        newPet.attack -= 1
+        attack.textContent = ` ${newPet.attack} `
         remainingStat.textContent = ` ${newPet.stat} `
       }
     }
     else if(event.target.className === "plus-defense") {
       if(newPet.stat > 0 && newPet.defense < 30) {
         newPet.stat -= 1
-        // newPet.defense += 1
-        defense.textContent = ` ${newPet.defense += 1} `
+        newPet.defense += 1
+        defense.textContent = ` ${newPet.defense} `
         remainingStat.textContent = ` ${newPet.stat} `
       }
     } 
     else if(event.target.className === "minus-defense") {
       if(newPet.defense > 1) {
         newPet.stat += 1
-        // newPet.defense -= 1
-        defense.textContent = ` ${newPet.defense -= 1} `
+        newPet.defense -= 1
+        defense.textContent = ` ${newPet.defense} `
         remainingStat.textContent = ` ${newPet.stat} `
       }
     }
     else if(event.target.className === "plus-speed") {
       if(newPet.stat > 0 && newPet.speed < 30) {
         newPet.stat -= 1
-        // newPet.speed += 1
-        speed.textContent = ` ${newPet.speed += 1} `
+        newPet.speed += 1
+        speed.textContent = ` ${newPet.speed} `
         remainingStat.textContent = ` ${newPet.stat} `
       }
     } 
     else if(event.target.className === "minus-speed") {
       if(newPet.speed > 1) {
         newPet.stat += 1
-        // newPet.speed -= 1
-        speed.textContent = ` ${newPet.speed -= 1} `
+        newPet.speed -= 1
+        speed.textContent = ` ${newPet.speed} `
         remainingStat.textContent = ` ${newPet.stat} `
       }
     }
