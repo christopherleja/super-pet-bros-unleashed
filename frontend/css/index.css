@@ -92,16 +92,19 @@ header{
 .pets-tab:hover {
   color: #A53860;
   transition: 600ms;
+  cursor: pointer;
 }
 
 .create-tab:hover {
   color: #A53860;
   transition: 600ms;
+  cursor: pointer;
 }
 
 .battle-tab:hover {
   color: #A53860;
   transition: 600ms;
+  cursor: pointer;
 }
 
 .create-tab-dragon1 {
@@ -151,6 +154,18 @@ header{
 .pets-li:hover {
   background-color: rgb(228, 174, 112);
   transition: 600ms;
+  cursor: pointer;
+}
+
+#pet-details {
+  margin: 3rem;
+
+}
+
+.pet-image {
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
 }
 
 footer {

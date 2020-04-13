@@ -5,19 +5,10 @@ const movesArray = []
 const petDetailDiv = document.querySelector("#pet-details")
 
 fetch(BASE_URL + "pets")
-    .then((response) => {
-    return response.json();
-    })
-    .then((petArr) => {
-        petArr.forEach(renderPet);
-        petList.addEventListener("click", e => {
-          console.log(e.target.id)
-          let targetPet = petArr.find(pet => {
-            return pet.id === parseInt(e.target.id)
-          })
-          displayPet(targetPet)
-        })
-    });
+  .then(response => response.json())
+  .then(pets => {
+    pets.forEach(petObj => renderPet(petObj));
+});
 
 fetch(BASE_URL + "moves")
     .then((response) => {
@@ -31,12 +22,17 @@ function renderPet(petObj){
     let petNameLi = document.createElement('li')
     let petNameSpan = document.createElement('span')
     
-    petNameLi.append(petNameSpan)
     petNameLi.id = `${petObj.id}`
     petNameSpan.innerText = `${petObj.name}`
     petNameSpan.className = "pets-name-text"
     petNameLi.className = "pets-li"
+
+    petNameLi.append(petNameSpan)
     petList.append(petNameLi)
+
+    petNameLi.addEventListener("click", () => {
+      displayPet(petObj)
+    })
 }
 
 petList.addEventListener("click", function(e){
@@ -140,13 +136,13 @@ function getInfo(move){
 
     function displayPet(petObj){
   petDetailDiv.innerHTML = `
-  <img src="${petObj.pet_image_url}"><br />
-  <h2 id="pet-name">${petObj.name}</h2><br />
-  <ul>
-  <li>hp: ${petObj.hp}</li>
-  <li>attack: ${petObj.attack}</li>
-  <li>defense: ${petObj.defense}</li>
-  <li>speed: ${petObj.speed}</li>
+  <img class="pet-image" src="${petObj.pet_image_url}"><br />
+  <h2 id="pet-name">${petObj.name}</h2>
+  <ul class="pet-stat-ul">
+    <li>HP: ${petObj.hp}</li>
+    <li>Attack: ${petObj.attack}</li>
+    <li>Defense: ${petObj.defense}</li>
+    <li>Speed: ${petObj.speed}</li>
   </ul>
   `
 }
