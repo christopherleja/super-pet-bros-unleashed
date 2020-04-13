@@ -1,6 +1,8 @@
 const BASE_URL = "http://localhost:3000/"
 const petList = document.querySelector(".pets-ul")
 const petDetailDiv = document.querySelector("#pet-details")
+const createTab = document.querySelector(".create-tab")
+const battleTab = document.querySelector(".battle-tab")
 
 fetch(BASE_URL + "pets")
   .then(response => response.json())
@@ -26,6 +28,7 @@ function renderPet(petObj){
 }
 
 function displayPet(petObj){
+  petDetailDiv.style.display = "block"
   petDetailDiv.innerHTML = `
   <img class="pet-image" src="${petObj.pet_image_url}"><br />
   <h2 id="pet-name">${petObj.name}</h2>
@@ -37,3 +40,8 @@ function displayPet(petObj){
   </ul>
   `
 }
+
+createTab.addEventListener("click", () => {
+  createPet()
+})
+

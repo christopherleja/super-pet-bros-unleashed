@@ -168,6 +168,19 @@ header{
   object-fit: cover;
 }
 
+
+#pet-details {
+  display: none;
+}
+
+#pet-create {
+  display: none;
+}
+
+#pet-battle {
+  display: none;
+}
+
 footer {
   font-size: 2rem;
   font-family: 'Bebas Neue', cursive;
