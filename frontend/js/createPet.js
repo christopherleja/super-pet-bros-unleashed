@@ -8,7 +8,7 @@ function createPet() {
   const basePet = {
     name: "",
     image_url: "",
-    stat: 8,
+    stat: 10,
     hp: 25,
     attack: 5,
     defense: 5,
@@ -33,13 +33,13 @@ function createPet() {
       <h3>What is your pet's personality?</h3>
       <select class="personality">
         <option>--Select--</option>
-        <option name="a1">Affectionate Cuddler</option>
-        <option name="a2">Feisty Rascal</option>
-        <option name="a3">Lazy Potato</option>
-        <option name="a4">Energetic Bullet</option>
-        <option name="a4">Indifferent Roommate</option>
-        <option name="a4">Shy Sweetheart</option>
-        <option name="a4">Fierce Coward</option>
+        <option>Affectionate Cuddler</option>
+        <option>Feisty Rascal</option>
+        <option>Lazy Potato</option>
+        <option>Energetic Bullet</option>
+        <option>Indifferent Roommate</option>
+        <option>Shy Sweetheart</option>
+        <option>Fierce Coward</option>
       </select>
     </div>
 
