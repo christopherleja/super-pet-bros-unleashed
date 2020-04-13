@@ -1,7 +1,7 @@
 function createPet() {
   petDetailDiv.style.display = "none"
   welcomeDiv.style.display = "none"
-  petBattleDiv.style.display = "none"
+  // petBattleDiv.style.display = "block"
   
   petCreateDiv.style.display = "block"
 
