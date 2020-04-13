@@ -1,5 +1,7 @@
 const BASE_URL = "http://localhost:3000/"
 const petList = document.querySelector(".pets-ul")
+const mainRender = document.querySelector("#main-render")
+const movesArray = []
 const petDetailDiv = document.querySelector("#pet-details")
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
@@ -7,10 +9,12 @@ const battleTab = document.querySelector(".battle-tab")
 fetch(BASE_URL + "pets")
   .then(response => response.json())
   .then(pets => {
-    pets.forEach(petObj => renderPet(petObj));
+    let petsArr = pets.data
+    petsArr.forEach(petObj => renderPet(petObj.attributes));
 });
 
 function renderPet(petObj){
+    console.log("in render pet, petObj is " + petObj)
     let petNameLi = document.createElement('li')
     let petNameSpan = document.createElement('span')
     
@@ -27,10 +31,12 @@ function renderPet(petObj){
     })
 }
 
-function displayPet(petObj){
+  
+function displayPet(petObj) {
+  
   petDetailDiv.style.display = "block"
   petDetailDiv.innerHTML = `
-  <img class="pet-image" src="${petObj.pet_image_url}"><br />
+  <img class="pet-image" src="${petObj['pet-image-url']}"><br />
   <h2 id="pet-name">${petObj.name}</h2>
   <ul class="pet-stat-ul">
     <li>HP: ${petObj.hp}</li>
@@ -38,6 +44,27 @@ function displayPet(petObj){
     <li>Defense: ${petObj.defense}</li>
     <li>Speed: ${petObj.speed}</li>
   </ul>
+  <ol class="pet-move-ol">
+    <li>${petObj.moves[0].name}</li>
+        <ul class="move-stats-ul">
+            <li>Power: ${petObj.moves[0].power}</li>
+            <li>Effect: ${petObj.moves[0].effect}</li>
+        </ul>
+    <li>${petObj.moves[1].name}</li>
+        <ul class="move-stats-ul">
+            <li>Power: ${petObj.moves[1].power}</li>
+            <li>Effect: ${petObj.moves[1].effect}</li>
+        </ul>
+    <li>${petObj.moves[2].name}</li>
+        <ul class="move-stats-ul">
+            <li>Power: ${petObj.moves[2].power}</li>
+            <li>Effect: ${petObj.moves[2].effect}</li>
+        </ul>
+    <li>${petObj.moves[3].name}</li>
+        <ul class="move-stats-ul">
+            <li>Power: ${petObj.moves[3].power}</li>
+            <li>Effect: ${petObj.moves[3].effect}</li>
+        </ul>
   `
 }
 
