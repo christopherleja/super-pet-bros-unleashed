@@ -10,13 +10,12 @@
   font-family: 'Fira Sans Condensed', sans-serif;
 }
 
-body, html {
+body {
   margin: 0;
   padding: 0;
   background-image: url("./images/pixelbackground.jpg");
   background-repeat: repeat-y;
   background-size: cover;
-  height: 100vh;
 }
 
 header{
@@ -115,19 +114,29 @@ header{
   background-color: #FFEEDB;
   background-size: cover;
   width: 90%;
-  height: 100%;
   margin: auto;
   border-left: 1px solid black;
   border-right: 1px solid black;
   display: flex;
   position: relative;
-  z-index: 0;
+}
+
+#main-render {
+  height: 100%;
+}
+
+#welcome-page {
+  margin: 3rem;
+  height: 100vh;
+}
+
+#headers {
+  cursor: pointer;
 }
 
 .pets-leftbar {
-  width: 16rem;
+  width: 18rem;
   border-right: 1px solid black;
-  height: 100vh;
 }
 
 .pets-ul {
@@ -136,7 +145,6 @@ header{
   margin: 0;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .pets-li {
@@ -159,6 +167,7 @@ header{
 
 #pet-details {
   margin: 3rem;
+  max-height: 100%;
 }
 
 .pet-image {

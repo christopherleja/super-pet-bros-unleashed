@@ -1,9 +1,8 @@
 function createPet() {
   petDetailDiv.style.display = "none"
-  
+  welcomeDiv.style.display = "none"
   
   petCreateDiv.style.display = "block"
-  
 
   const basePet = {
     name: "",
