@@ -18,6 +18,7 @@ fetch(BASE_URL + "pets")
 });
 
 function renderPet(petObj){
+    
     let petNameLi = document.createElement('li')
     let petNameSpan = document.createElement('span')
     
@@ -30,6 +31,7 @@ function renderPet(petObj){
     petList.append(petNameLi)
 
     petNameLi.addEventListener("click", () => {
+
         displayPet(petObj)
     })
 }
@@ -140,22 +142,22 @@ function renderBattle(playerPet, petObj){
 
     move1.addEventListener("click", function(e){
         e.preventDefault()
-        console.log("you used " + `${player.moves[0].name}. It has ${player.moves[0].power} power and ${effectArray[petObj.moves[0].effect_target]} by ${petObj.moves[0].effect}%`)
+        console.log("you used " + `${player.moves[0].name}. It has ${player.moves[0].power} power and ${effectArray[player.moves[0].effect_target]} by ${player.moves[0].effect}%`)
     })
 
     move2.addEventListener("click", function(e){
         e.preventDefault()
-        console.log("you used " + `${player.moves[1].name}. It has ${player.moves[1].power} power and ${effectArray[petObj.moves[1].effect_target]} by ${petObj.moves[1].effect}%`)
+        console.log("you used " + `${player.moves[1].name}. It has ${player.moves[1].power} power and ${effectArray[player.moves[1].effect_target]} by ${player.moves[1].effect}%`)
     })
 
     move3.addEventListener("click", function(e){
         e.preventDefault()
-        console.log("you used " + `${player.moves[2].name}. It has ${player.moves[2].power} power and ${effectArray[petObj.moves[2].effect_target]} by ${petObj.moves[2].effect}%`)
+        console.log("you used " + `${player.moves[2].name}. It has ${player.moves[2].power} power and ${effectArray[player.moves[2].effect_target]} by ${player.moves[2].effect}%`)
     })
 
     move4.addEventListener("click", function(e){
         e.preventDefault()
-        console.log("you used " + `${player.moves[3].name}. It has ${player.moves[3].power} power and ${effectArray[petObj.moves[3].effect_target]} by ${petObj.moves[3].effect}%`)
+        console.log("you used " + `${player.moves[3].name}. It has ${player.moves[3].power} power and ${effectArray[player.moves[3].effect_target]} by ${player.moves[3].effect}%`)
     })
 
     petBattleDiv.append(opponentDiv, playerPetDiv)
