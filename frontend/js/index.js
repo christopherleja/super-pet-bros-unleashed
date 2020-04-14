@@ -1,8 +1,9 @@
 const BASE_URL = "http://localhost:3000/"
 const petList = document.querySelector(".pets-ul")
 const mainRender = document.querySelector("#main-render")
-const petDetailDiv = document.querySelector("#pet-details")
+
 const petCreateDiv = document.querySelector("#pet-create")
+const petBattleDiv = document.querySelector('#pet-battle')
 const headers = document.querySelector("#headers")
 const welcomeDiv = document.querySelector("#welcome-page")
 const playerPet = []
@@ -40,16 +41,21 @@ headers.addEventListener("click", () => {
   displayWelcome()
 })
 function displayWelcome() {
-    welcomeDiv.style.display = "block"
-    petCreateDiv.style.display = "none"
-    petDetailDiv.style.display = "none"
+    mainRender.innerHTML = ""
+    const welcome = document.createElement('div')
+    welcome.setAttribute('id', 'welcome-page')
+    const header = document.createElement('h1')
+    header.setAttribute('class', 'welcome-header')
+    header.textContent = 'Welcome to Super Pet Bros. Unleashed!'
+
+    welcome.append(header)
+    mainRender.append(welcome)
 }
   
 function displayPet(petObj) {
-    welcomeDiv.style.display = "none"
-    petCreateDiv.style.display = "none"
-    // petBattleDiv.style.display = "none"
-    petDetailDiv.style.display = "block"
+    mainRender.innerHTML = ""
+    const petDetailDiv = document.createElement('div')
+    petDetailDiv.setAttribute('id', 'pet-details')
     petDetailDiv.innerHTML = `
     <img class="pet-image" src="${petObj['pet-image-url']}"><br />
     <h2 id="pet-name">${petObj.name}</h2>
@@ -90,6 +96,7 @@ function displayPet(petObj) {
     battleButton.innerText = `Battle ${petObj.name}`
 
     petDetailDiv.append(battleButton, choosePetButton)
+    mainRender.append(petDetailDiv)
 
     choosePetButton.addEventListener("click", function(e){
         e.preventDefault()
@@ -109,11 +116,9 @@ function displayPet(petObj) {
 }
 
 function renderBattle(playerPet, petObj){
-    welcomeDiv.style.display = "none"
-    petDetailDiv.style.display = "none"
-    petCreateDiv.style.display = "none"
-    let petBattleDiv = document.querySelector('#pet-battle')
-    petBattleDiv.style.display = "block"
+    mainRender.innerHTML = ""
+    const petBattleDiv = document.createElement('div')
+    petBattleDiv.setAttribute('id', 'pet-battle')
     let opponent = petObj
     let player = playerPet[0]
     let opponentDiv = document.createElement('div')
@@ -160,7 +165,7 @@ function renderBattle(playerPet, petObj){
     })
 
     petBattleDiv.append(opponentDiv, playerPetDiv)
-
+  mainRender.append(petBattleDiv)
 }
 
 createTab.addEventListener("click", () => {

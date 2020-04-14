@@ -1,9 +1,7 @@
 function createPet() {
-  petDetailDiv.style.display = "none"
-  welcomeDiv.style.display = "none"
-  // petBattleDiv.style.display = "block"
-  
-  petCreateDiv.style.display = "block"
+  mainRender.innerHTML = ""
+  const petCreateDiv = document.createElement('div')
+  petCreateDiv.setAttribute('id', 'pet-create')
 
   const basePet = {
     name: "",
@@ -24,7 +22,7 @@ function createPet() {
   }
 
   petCreateDiv.innerHTML = `
-  <h1>Create your Battle Pet!</h1>
+  <h1>Create your Super Pet!</h1>
   <form class="pet-form">
     <strong>Name: </strong><input type="text" class="pet-name" name="name" /><br>
     <strong>Image: </strong><input type="text" class="pet-image-url" name="pet_image_url" />
@@ -65,29 +63,29 @@ function createPet() {
         <ul class="move-effect"><br></ul>
       </div>
     </div>
-    <button type="submit">CREATE!</button>
+    <button type="submit" class="create-button">CREATE!</button>
   </form>`
 
-  const nameInput = document.querySelector('.pet-name')
-  const imageInput = document.querySelector('.pet-image-url')
+  const nameInput = petCreateDiv.querySelector('.pet-name')
+  const imageInput = petCreateDiv.querySelector('.pet-image-url')
 
-  const assignStats = document.querySelector('.assign-stats')
-  let remainingStat = document.querySelector('.remaining-stat')
-  let hp = document.querySelector('[name="hp"]')
-  let attack = document.querySelector('[name="attack"]')
-  let defense = document.querySelector('[name="defense"]')
-  let speed = document.querySelector('[name="speed"]')
+  const assignStats = petCreateDiv.querySelector('.assign-stats')
+  let remainingStat = petCreateDiv.querySelector('.remaining-stat')
+  let hp = petCreateDiv.querySelector('[name="hp"]')
+  let attack = petCreateDiv.querySelector('[name="attack"]')
+  let defense = petCreateDiv.querySelector('[name="defense"]')
+  let speed = petCreateDiv.querySelector('[name="speed"]')
 
-  let modname = document.querySelector('.mod-name')
-  let modhp = document.querySelector('.mod-hp')
-  let modattack = document.querySelector('.mod-attack')
-  let moddefense = document.querySelector('.mod-defense')
-  let modspeed = document.querySelector('.mod-speed')
+  let modname = petCreateDiv.querySelector('.mod-name')
+  let modhp = petCreateDiv.querySelector('.mod-hp')
+  let modattack = petCreateDiv.querySelector('.mod-attack')
+  let moddefense = petCreateDiv.querySelector('.mod-defense')
+  let modspeed = petCreateDiv.querySelector('.mod-speed')
 
-  const moveList = document.querySelector('.move-list')
-  const moveEffects = document.querySelector('.move-effect')
+  const moveList = petCreateDiv.querySelector('.move-list')
+  const moveEffects = petCreateDiv.querySelector('.move-effect')
 
-  const personality = document.querySelector('.personality')
+  const personality = petCreateDiv.querySelector('.personality')
   personality.addEventListener("change", () => {
     switch (personality.value) {
       case "Affectionate Cuddler":
@@ -341,4 +339,5 @@ function createPet() {
     
 
   })
+  mainRender.append(petCreateDiv)
 }
