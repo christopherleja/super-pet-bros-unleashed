@@ -5,7 +5,14 @@ const headers = document.querySelector("#headers")
 const playerPet = []
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
+
+const backgrounds = ["./css/images/forestscape.jpg", "./css/images/mountainscape.jpg", "./css/images/pixelbackground.jpg"]
+let ryu = new sound("./css/sound/Ryu_theme.mp3")
+let ff7 = new sound("./css/sound/Fight_on_theme.mp3")
+let guile = new sound("./css/sound/Guile_theme.mp3")
+
 let effectArray = ["none", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
+
 
 fetch(BASE_URL + "pets")
     .then(response => response.json())
@@ -15,11 +22,9 @@ fetch(BASE_URL + "pets")
 });
 
 function renderPet(petObj){
-    
     let petNameLi = document.createElement('li')
     let petNameSpan = document.createElement('span')
     
-    // petNameLi.id = `${petObj.id}`
     petNameSpan.innerText = `${petObj.name}`
     petNameSpan.className = "pets-name-text"
     petNameLi.className = "pets-li"
@@ -37,6 +42,7 @@ headers.addEventListener("click", () => {
     displayWelcome()
 })
 function displayWelcome() {
+    ryu.stop()
     mainRender.innerHTML = ""
     const welcome = document.createElement('div')
     welcome.setAttribute('id', 'welcome-page')
@@ -49,6 +55,7 @@ function displayWelcome() {
 }
   
 function displayPet(petObj) {
+    ryu.stop()
     mainRender.innerHTML = ""
     const petDetailDiv = document.createElement('div')
     petDetailDiv.setAttribute('id', 'pet-details')
@@ -91,7 +98,7 @@ function displayPet(petObj) {
     battleButton.id = "battle-btn"
     battleButton.innerText = `Battle ${petObj.name}`
 
-    petDetailDiv.append(battleButton, choosePetButton)
+    petDetailDiv.append(choosePetButton, battleButton)
     mainRender.append(petDetailDiv)
 
     choosePetButton.addEventListener("click", function(e){
@@ -113,8 +120,24 @@ function displayPet(petObj) {
 
 function renderBattle(playerPet, petObj){
     mainRender.innerHTML = ""
+    
     const petBattleDiv = document.createElement('div')
     petBattleDiv.setAttribute('id', 'pet-battle')
+
+    const audioDiv = document.createElement('div')
+    audioDiv.setAttribute('id', 'audio-player')
+    audioDiv.innerHTML = `
+    <button onclick="ryu.playPause()" type="button">Ryu</button>
+    <button onclick="ff7.playPause()" type="button">FF7</button>
+    <button onclick="guile.playPause()" type="button">Guile</button>`
+    petBattleDiv.append(audioDiv)
+    ryu.play()
+
+    const battleDiv = document.createElement('div')
+    battleDiv.setAttribute('id', 'battle-div')
+    const setBackground = Math.round(Math.random() * 3)
+    battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
+
     let opponent = petObj
     let player = playerPet[0]
     let opponentDiv = document.createElement('div')
@@ -158,7 +181,8 @@ function renderBattle(playerPet, petObj){
         } 
         })
 
-    petBattleDiv.append(opponentDiv, playerPetDiv)
+    battleDiv.append(opponentDiv, playerPetDiv)
+    petBattleDiv.append(battleDiv)
     mainRender.append(petBattleDiv)
 }
 
@@ -173,5 +197,27 @@ function speedCheck(player, opponent){
     } else if (opponent.speed > player.speed){
         console.log("opponent speed is " + opponent.speed)
         console.log("player speed is " + player.speed)
+    }
+}
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+    this.playPause = function(){
+        if(this.sound.paused){
+            this.sound.play()
+        } else {
+            this.sound.pause()
+        }
     }
 }

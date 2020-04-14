@@ -65,6 +65,19 @@ header{
   padding: 0 7rem;
 }
 
+.navbar-ul2 {
+  display: flex;
+  justify-content: center;
+  background-color: maroon;
+  height: 1.5rem;
+  font-size: 1rem;
+  margin: 0;
+  top: 16vh;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-family: 'Fugaz One', cursive;
+}
+
 .navbar-ul li {
   display: block;
 }
@@ -99,11 +112,6 @@ header{
   text-shadow: 2px 2px#A53860;
   transition: 600ms;
   cursor: pointer;
-}
-
-.create-tab:hover .create-tab-dragon1 .create-tab-dragon2 {
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
 }
 
 .battle-tab:hover {
@@ -148,12 +156,25 @@ header{
   border-right: 1px solid black;
 }
 
+h2#pet-name {
+  margin-bottom: 0;
+}
+
+h4#playerHP {
+  margin-top: 0;
+}
+
+h4#opponentHP {
+  margin-top: 0;
+}
+
 .pets-ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
+  width: 18rem;
 }
 
 .pets-li {
@@ -186,10 +207,7 @@ header{
   width: 15rem;
   height: 15rem;
   object-fit: cover;
-}
-
-#pet-details {
-  
+  border: 1px solid black;
 }
 
 #pet-create {
@@ -197,14 +215,30 @@ header{
 }
 
 #pet-battle {
-  height: 45rem;
-  width: 40rem;
+  height: 40rem;
+  width: 100rem;
+  display: flex;
+}
+
+div#battle-div {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 35rem;
+  width: 48rem;
+  /* background-image: url(./images/forestscape.jpg); */
+  background-size: cover;
+  padding: 0;
+  position: relative;
+  top: auto;
+  left: 7px;
 }
 
 div#opponent-div {
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   top: 1rem;
+  margin: 0;
 }
 
 img#opponent {
@@ -216,8 +250,9 @@ img#opponent {
 
 div#player-pet-div {
   position: absolute;
-  left: 19rem;
-  bottom: 1rem;
+  left: 2rem;
+  bottom: -4rem;
+  margin: 0;
 }
 
 div#button-div{
@@ -289,4 +324,15 @@ footer {
   background-image: url("./images/pixelbackground.jpg");
   background-size: cover;
   background-position: bottom;
+}
+
+#audio-player {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 5px;
+}
+
+#audio-player button {
+  width: 70px;
 }
