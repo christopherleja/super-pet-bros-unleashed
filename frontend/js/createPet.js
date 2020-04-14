@@ -335,7 +335,8 @@ function createPet() {
     })
       .then(response => response.json())
       .then(petObj => {
-        renderPet(petObj.attributes)
+        renderPet(petObj.data.attributes)
+        displayPet(petObj.data.attributes)
       })
     
 

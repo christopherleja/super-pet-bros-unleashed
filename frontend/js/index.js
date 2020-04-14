@@ -22,7 +22,7 @@ function renderPet(petObj){
     let petNameLi = document.createElement('li')
     let petNameSpan = document.createElement('span')
     
-    petNameLi.id = `${petObj.id}`
+    // petNameLi.id = `${petObj.id}`
     petNameSpan.innerText = `${petObj.name}`
     petNameSpan.className = "pets-name-text"
     petNameLi.className = "pets-li"
