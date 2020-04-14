@@ -218,6 +218,9 @@ div#player-pet-div {
   position: absolute;
   left: 19rem;
   bottom: 1rem;
+}
+
+div#button-div{
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
