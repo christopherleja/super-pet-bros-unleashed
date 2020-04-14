@@ -33,7 +33,6 @@ function renderPet(petObj){
     })
 }
 
-
 headers.addEventListener("click", () => {
   displayWelcome()
 })

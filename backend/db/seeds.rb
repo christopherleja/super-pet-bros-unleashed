@@ -16,10 +16,10 @@ move5 = Move.create(name: "Snuggle Missile", power: 60, effect: 30, effect_targe
 move6 = Move.create(name: "Pounce", power: 50, effect: 30, effect_target: 4)
 
 move7 = Move.create(name: "Nose Boop", power: 60, effect: 20, effect_target: 5)
-move8 = Move.create(name: "Nuzzle", power: 60, effect: 30, effect_target: 5)
+move8 = Move.create(name: "Nuzzle", power: 50, effect: 30, effect_target: 5)
 move9 = Move.create(name: "Making Biscuits", power: 50, effect: 30, effect_target: 6)
 
-move10 = Move.create(name: "Zoomies!", power: 40, effect: 100, effect_target: 4)
+move10 = Move.create(name: "Zoomies!", power: 20, effect: 80, effect_target: 4)
 move11 = Move.create(name: "Paw Slap", power: 70, effect: 1, effect_target: 0)
 move12 = Move.create(name: "Tackle", power: 70, effect: 1, effect_target: 0)
 
