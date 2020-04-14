@@ -1,11 +1,7 @@
 const BASE_URL = "http://localhost:3000/"
 const petList = document.querySelector(".pets-ul")
 const mainRender = document.querySelector("#main-render")
-
-const petCreateDiv = document.querySelector("#pet-create")
-const petBattleDiv = document.querySelector('#pet-battle')
 const headers = document.querySelector("#headers")
-const welcomeDiv = document.querySelector("#welcome-page")
 const playerPet = []
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
