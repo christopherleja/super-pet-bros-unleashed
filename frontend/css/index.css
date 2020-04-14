@@ -182,7 +182,7 @@ header{
 
 #pet-create {
   display: none;
-  margin: 1rem 3rem;
+  margin: 1rem 1rem;
 }
 
 #pet-battle {
@@ -222,9 +222,37 @@ img#player{
   flex-direction: row;
 }
 
+.assign-stats {
+  width: 10rem;
+}
+
 .personality-stats {
   margin-left: 1rem;
   padding-top: 1px;
+  width: 11rem;
+}
+
+.move-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.move-li {
+  width: 100%;
+}
+
+.move-effect {
+  padding-left: 0;
+  list-style: none;
+}
+
+.move-container {
+  display: flex;
+}
+
+.select-move {
+  font-size: 18.72px;
 }
 
 footer {
