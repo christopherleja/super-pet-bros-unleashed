@@ -8,6 +8,7 @@ const welcomeDiv = document.querySelector("#welcome-page")
 const playerPet = []
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
+let effectArray = ["none", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
 
 fetch(BASE_URL + "pets")
     .then(response => response.json())
@@ -47,7 +48,6 @@ function displayPet(petObj) {
     petCreateDiv.style.display = "none"
     // petBattleDiv.style.display = "none"
     petDetailDiv.style.display = "block"
-    let effectArray = ["none", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
     petDetailDiv.innerHTML = `
     <img class="pet-image" src="${petObj['pet-image-url']}"><br />
     <h2 id="pet-name">${petObj.name}</h2>
@@ -119,19 +119,44 @@ function renderBattle(playerPet, petObj){
     opponentDiv.innerHTML = `
     <img class="pet-image" id="opponent" src="${opponent['pet-image-url']}"><br />
     <h2 id="pet-name">${opponent.name}</h2>
-    <h6 id="opponentHP">${opponent.hp}</h6>
+    <h4 id="opponentHP">HP: ${opponent.hp}</h4>
     `
     let playerPetDiv = document.createElement('div')
     playerPetDiv.id = "player-pet-div"
     playerPetDiv.innerHTML = `
     <img class="pet-image" id="player" src="${player['pet-image-url']}"><br />
     <h2 id="pet-name">${player.name}</h2>
-    <h6 id="playerHP">${player.hp}</h6>
+    <h4 id="playerHP">HP: ${player.hp}</h4>
     <button id="move1">${player.moves[0].name}</button>
     <button id="move2">${player.moves[1].name}</button>
     <button id="move3">${player.moves[2].name}</button>
     <button id="move4">${player.moves[3].name}</button>
     `
+    let move1 = playerPetDiv.querySelector('#move1')
+    let move2 = playerPetDiv.querySelector('#move2')
+    let move3 = playerPetDiv.querySelector('#move3')
+    let move4 = playerPetDiv.querySelector('#move4')
+
+    move1.addEventListener("click", function(e){
+        e.preventDefault()
+        console.log("you used " + `${player.moves[0].name}. It has ${player.moves[0].power} power and ${effectArray[petObj.moves[0].effect_target]} by ${petObj.moves[0].effect}%`)
+    })
+
+    move2.addEventListener("click", function(e){
+        e.preventDefault()
+        console.log("you used " + `${player.moves[1].name}. It has ${player.moves[1].power} power and ${effectArray[petObj.moves[1].effect_target]} by ${petObj.moves[1].effect}%`)
+    })
+
+    move3.addEventListener("click", function(e){
+        e.preventDefault()
+        console.log("you used " + `${player.moves[2].name}. It has ${player.moves[2].power} power and ${effectArray[petObj.moves[2].effect_target]} by ${petObj.moves[2].effect}%`)
+    })
+
+    move4.addEventListener("click", function(e){
+        e.preventDefault()
+        console.log("you used " + `${player.moves[3].name}. It has ${player.moves[3].power} power and ${effectArray[petObj.moves[3].effect_target]} by ${petObj.moves[3].effect}%`)
+    })
+
     petBattleDiv.append(opponentDiv, playerPetDiv)
 
 }
