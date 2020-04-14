@@ -34,7 +34,7 @@ function renderPet(petObj){
 }
 
 headers.addEventListener("click", () => {
-  displayWelcome()
+    displayWelcome()
 })
 function displayWelcome() {
     mainRender.innerHTML = ""
@@ -130,41 +130,48 @@ function renderBattle(playerPet, petObj){
     <img class="pet-image" id="player" src="${player['pet-image-url']}"><br />
     <h2 id="pet-name">${player.name}</h2>
     <h4 id="playerHP">HP: ${player.hp}</h4>
+    `
+    let buttonDiv = document.createElement('div')
+    buttonDiv.id = "button-div"
+    buttonDiv.innerHTML = `
     <button id="move1">${player.moves[0].name}</button>
     <button id="move2">${player.moves[1].name}</button>
     <button id="move3">${player.moves[2].name}</button>
     <button id="move4">${player.moves[3].name}</button>
     `
-    let move1 = playerPetDiv.querySelector('#move1')
-    let move2 = playerPetDiv.querySelector('#move2')
-    let move3 = playerPetDiv.querySelector('#move3')
-    let move4 = playerPetDiv.querySelector('#move4')
+    playerPetDiv.append(buttonDiv)
 
-    move1.addEventListener("click", function(e){
+    buttonDiv.addEventListener("click", function(e){
         e.preventDefault()
-        console.log("you used " + `${player.moves[0].name}. It has ${player.moves[0].power} power and ${effectArray[player.moves[0].effect_target]} by ${player.moves[0].effect}%`)
-    })
-
-    move2.addEventListener("click", function(e){
-        e.preventDefault()
-        console.log("you used " + `${player.moves[1].name}. It has ${player.moves[1].power} power and ${effectArray[player.moves[1].effect_target]} by ${player.moves[1].effect}%`)
-    })
-
-    move3.addEventListener("click", function(e){
-        e.preventDefault()
-        console.log("you used " + `${player.moves[2].name}. It has ${player.moves[2].power} power and ${effectArray[player.moves[2].effect_target]} by ${player.moves[2].effect}%`)
-    })
-
-    move4.addEventListener("click", function(e){
-        e.preventDefault()
-        console.log("you used " + `${player.moves[3].name}. It has ${player.moves[3].power} power and ${effectArray[player.moves[3].effect_target]} by ${player.moves[3].effect}%`)
-    })
+        if (e.target.id === "move1"){
+            speedCheck(player, opponent)
+            console.log("you used " + `${player.moves[0].name}. It has ${player.moves[0].power} power and ${effectArray[player.moves[0].effect_target]} by ${player.moves[0].effect}%`)
+        } else if (e.target.id === "move2"){
+            speedCheck(player, opponent)
+            console.log("you used " + `${player.moves[1].name}. It has ${player.moves[1].power} power and ${effectArray[player.moves[1].effect_target]} by ${player.moves[1].effect}%`)
+        } else if (e.target.id === "move3"){
+            speedCheck(player, opponent)
+            console.log("you used " + `${player.moves[2].name}. It has ${player.moves[2].power} power and ${effectArray[player.moves[2].effect_target]} by ${player.moves[2].effect}%`)
+        } else if (e.target.id === "move4"){
+            speedCheck(player, opponent)
+            console.log("you used " + `${player.moves[3].name}. It has ${player.moves[3].power} power and ${effectArray[player.moves[3].effect_target]} by ${player.moves[3].effect}%`)
+        } 
+        })
 
     petBattleDiv.append(opponentDiv, playerPetDiv)
-  mainRender.append(petBattleDiv)
+    mainRender.append(petBattleDiv)
 }
 
 createTab.addEventListener("click", () => {
-  createPet()
+    createPet()
 })
 
+function speedCheck(player, opponent){
+    if (player.speed >= opponent.speed){
+        console.log("player speed is " + player.speed)
+        console.log("opponent speed is " + opponent.speed)
+    } else if (opponent.speed > player.speed){
+        console.log("opponent speed is " + opponent.speed)
+        console.log("player speed is " + player.speed)
+    }
+}
