@@ -177,10 +177,7 @@ header{
   width: 15rem;
   height: 15rem;
   object-fit: cover;
-}
-
-#pet-details {
-  
+  border: 1px solid black;
 }
 
 #pet-create {
@@ -191,12 +188,28 @@ header{
 #pet-battle {
   height: 45rem;
   width: 40rem;
+  display: flex;
+}
+
+div#battle-div {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 35rem;
+  width: 48rem;
+  background-image: url(./images/forestscape.jpg);
+  background-size: cover;
+  padding: 0;
+  position: relative;
+  top: auto;
+  left: 7px;
 }
 
 div#opponent-div {
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   top: 1rem;
+  margin: 0;
 }
 
 img#opponent {
@@ -208,8 +221,9 @@ img#opponent {
 
 div#player-pet-div {
   position: absolute;
-  left: 19rem;
-  bottom: 1rem;
+  left: 2rem;
+  bottom: -4rem;
+  margin: 0;
 }
 
 div#button-div{
@@ -220,6 +234,18 @@ div#button-div{
 
 img#player{
   border-radius: 25%;
+}
+
+h2#pet-name {
+  margin-bottom: 0;
+}
+
+h4#playerHP {
+  margin-top: 0;
+}
+
+h4#opponentHP {
+  margin-top: 0;
 }
 
 .stats-container {
@@ -281,4 +307,15 @@ footer {
   background-image: url("./images/pixelbackground.jpg");
   background-size: cover;
   background-position: bottom;
+}
+
+#audio-player {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 5px;
+}
+
+#audio-player button {
+  width: 70px;
 }
