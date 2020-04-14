@@ -71,7 +71,6 @@ function createPet() {
   const nameInput = document.querySelector('.pet-name')
   const imageInput = document.querySelector('.pet-image-url')
 
-
   const assignStats = document.querySelector('.assign-stats')
   let remainingStat = document.querySelector('.remaining-stat')
   let hp = document.querySelector('[name="hp"]')
@@ -247,10 +246,13 @@ function createPet() {
     }
 
   })
+  
+  let moveArray = []
 
   fetch(BASE_URL + '/moves')
   .then(response => response.json())
   .then(moves => {
+    moveArray = moves
     moves.forEach(move => renderMove(move))
   })
 
@@ -276,9 +278,9 @@ function createPet() {
     moveEffect.innerHTML = `<label> | Power: ${move.power} Effect: ${effectArray[move.effect_target]} ${effectCheck(move)}</label>`
     moveEffects.append(moveEffect)
     moveList.append(moveLi)
-
+    
+    let moveCheck = document.querySelectorAll('.move-name')
     moveLi.addEventListener("input", () => {
-      let moveCheck = document.querySelectorAll('.move-name')
       counter = 0;
       for(let i = 0; i < moveCheck.length; i++){
         if(moveCheck[i].checked === true){
@@ -304,7 +306,16 @@ function createPet() {
 
   petCreateDiv.addEventListener("submit", event => {
     event.preventDefault()
-
+    let moveId = []
+    let moveCheck = document.querySelectorAll('.move-name')
+    for(let i = 0; i < moveCheck.length; i++){
+      if(moveCheck[i].checked === true){
+        moveId.push(moveCheck[i].parentElement.dataset.id)
+      }
+    }
+    let move = moveId.map(id => parseInt(id))
+    let moves = moveArray.filter((object) => move.includes(object.id))
+    
     const newPet = {
       name: nameInput.value,
       image: imageInput.value,
@@ -312,25 +323,24 @@ function createPet() {
       attack: basePet.attack + modifier.attack,
       defense: basePet.defense + modifier.defense,
       speed: basePet.speed + modifier.speed,
-      moves: []
+      moves: moves
     }
 
-    console.log(newPet)
+    fetch(BASE_URL + 'pets', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPet),
+    })
+      .then(response => response.json())
+      .then(petObj => {
+        renderPet(petObj.attributes)
+      })
+    
 
   })
 
 
 
 }
-
-
-  // const newPet = {
-  //   name: 
-  //   pet_image_url:
-  //   hp:
-  //   attack:
-  //   defense:
-  //   speed:
-  //   moves:
-  // }
-

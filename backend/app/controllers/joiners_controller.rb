@@ -8,7 +8,6 @@ class JoinersController < ApplicationController
 
     def show
         joiner = joiner.find(params[:id])
-
         render json: joiner
     end
     
