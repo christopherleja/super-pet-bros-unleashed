@@ -226,7 +226,6 @@ div#battle-div {
   border-bottom: 1px solid black;
   height: 35rem;
   width: 48rem;
-  /* background-image: url(./images/forestscape.jpg); */
   background-size: cover;
   padding: 0;
   position: relative;
@@ -263,6 +262,18 @@ div#button-div{
 
 img#player{
   border-radius: 25%;
+}
+
+h2#pet-name {
+  margin-bottom: 0;
+}
+
+h4#playerHP {
+  margin-top: 0;
+}
+
+h4#opponentHP {
+  margin-top: 0;
 }
 
 .stats-container {
