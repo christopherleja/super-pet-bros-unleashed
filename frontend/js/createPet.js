@@ -318,7 +318,7 @@ function createPet() {
     
     const newPet = {
       name: nameInput.value,
-      image: imageInput.value,
+      pet_image_url: imageInput.value,
       hp: basePet.hp + modifier.hp,
       attack: basePet.attack + modifier.attack,
       defense: basePet.defense + modifier.defense,
@@ -340,7 +340,4 @@ function createPet() {
     
 
   })
-
-
-
 }
