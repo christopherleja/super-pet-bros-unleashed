@@ -180,7 +180,23 @@ h4#opponentHP {
 
 .move-button {
   height: 2rem;
-  font-family: "Fipps-Regular"
+  font-family: "Fipps-Regular";
+  background: none;
+  outline: none;
+  border: none;
+  margin: auto;
+}
+
+.move-button:hover::before {
+  font-family: sans-serif;
+  content:"\25b6";
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
+.pet-button {
+  height: 2rem;
+  font-family: "Fipps-Regular";
 }
 
 .pets-ul {
@@ -216,6 +232,10 @@ h4#opponentHP {
 #pet-details {
   margin: 3rem;
   max-height: 100%;
+}
+
+#battle-btn {
+  display: none;
 }
 
 .pet-image {
@@ -272,7 +292,13 @@ div#player-pet-div {
 div#button-div{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
+  background-color: #FFEEDB;
+  width: 25rem;
+  height: 5rem;
+  border-style: double;
+  border-color: black;
+  border-width: 5px;
 }
 
 div#text-box{

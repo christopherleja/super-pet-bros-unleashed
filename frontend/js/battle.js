@@ -48,19 +48,44 @@ function renderBattle(playerPet, petObj){
   `
   let buttonDiv = document.createElement('div')
   buttonDiv.id = "button-div"
+  // STRETCH use for loop to build the div with createElement
   buttonDiv.innerHTML = `
-  <button id="move1" class="move-button">${player.moves[0].name}</button>
-  <button id="move2" class="move-button">${player.moves[1].name}</button>
-  <button id="move3" class="move-button">${player.moves[2].name}</button>
-  <button id="move4" class="move-button">${player.moves[3].name}</button>
+  <button id="move1" class="move-button">
+    ${player.moves[0].name}
+    </button>
+  <button id="move2" class="move-button">
+    ${player.moves[1].name}
+    </button>
+  <button id="move3" class="move-button">
+    ${player.moves[2].name}
+    </button>
+  <button id="move4" class="move-button">
+    ${player.moves[3].name}
+    </button>
   `
   playerPetDiv.append(buttonDiv)
 
   let textBox = document.createElement('div')
   textBox.id = "text-box"
 
+  const moveButtonArrowDiv = document.querySelector(".move-button-arrow");
+
+  buttonDiv.addEventListener("hover", function(e) {
+    moveButtonArrowDiv.style.display = "inline-block";
+  });
+
   buttonDiv.addEventListener("click", function(e){
       e.preventDefault()
+      let moveButtons = document.querySelectorAll(".move-button")
+      function toggleButtons() {
+        moveButtons.forEach(button => button.disabled = !button.disabled)
+     }
+
+    //   debugger
+      if (e.target.type === "submit"){
+        toggleButtons() 
+        setTimeout(toggleButtons, 1500)
+      }
       if (e.target.id === "move1"){
           turn(player, opponent, 0)
       } else if (e.target.id === "move2"){
@@ -76,46 +101,47 @@ function renderBattle(playerPet, petObj){
       petBattleDiv.append(battleDiv)
       mainRender.append(petBattleDiv)
 
-    function opponentTurn(opponent, player, move_id){
+    function updatePlayerHp(player){
         let playerHp = document.querySelector("#playerHP")
-
-        petAttack(opponent, player, opponentAttackId(opponent))
         playerHp.innerHTML = `HP: ${Math.round(player.hp)} / ${playerPet[0].hp}`
+    }
+
+    function updateOpponentHp(opponent){
+        let opponentHp = document.querySelector("#opponentHP")
+        opponentHp.innerHTML = `HP: ${Math.round(opponent.hp)} / ${petObj.hp}`
+    }
+
+    function opponentTurn(opponent, player, move_id){
+        petAttack(opponent, player, opponentAttackId(opponent))
+        updatePlayerHp(player)
         moveEffect(opponent, player, opponentAttackId(opponent))
         battleOverCheck(player, opponent)
     }
 
     function playerTurn(player, opponent, move_id){
-        let opponentHp = document.querySelector("#opponentHP")
-
         petAttack(player, opponent, move_id)
-        opponentHp.innerHTML = `HP: ${Math.round(opponent.hp)} / ${petObj.hp}`
+        updateOpponentHp(opponent)
         moveEffect(player, opponent, move_id)
         battleOverCheck(player, opponent)
     }
 
     function turn(player, opponent, move_id){
         if (player.speed >= opponent.speed){
-            setTimeout(playerTurn, 500, player, opponent, move_id)            
-            setTimeout(opponentTurn, 2500, opponent, player, move_id)    
+            setTimeout(playerTurn, 100, player, opponent, move_id)            
+            setTimeout(opponentTurn, 1500, opponent, player, move_id)   
         } else if (opponent.speed > player.speed){
-            setTimeout(opponentTurn, 500, opponent, player, move_id)
-            setTimeout(playerTurn, 2500, player, opponent, move_id)
+            setTimeout(opponentTurn, 100, opponent, player, move_id)
+            setTimeout(playerTurn, 1500, player, opponent, move_id)
         }
         
   }
   
   function petAttack(user, target, move_id){
-      setTimeout(function(){
     let attackPower = user.attack * (user.moves[move_id].power/10)
     let damage = attackPower / target.defense
-        if (damage < 1){
-            damage = 1
-        }
     let newHP = target.hp - damage
     target.hp = newHP
     displayAttack(user, target, move_id)
-      })
   }
   
   function opponentAttackId(opponent){
@@ -154,22 +180,26 @@ function renderBattle(playerPet, petObj){
             user.attack = Math.round(increasedAttack)
             break
         case 7:
-            if (user.id === player.id){
+            if (user.name === player.name){
                 let maxHealth = playerPet[0].hp
                 let restoreHP = user.hp + (maxHealth * (user.moves[move_id].effect/100))
-                if (restoreHP > maxHealth){
+                if (restoreHP < maxHealth){
+                    user.hp = restoreHP
+                } else {
                     user.hp = maxHealth
                 }
-            }else if (user.id === opponent.id){
+            }else if (user.name === opponent.name){
                 let maxHealth = petObj.hp
                 let restoreHP = user.hp + (maxHealth * (user.moves[move_id].effect/100))
-                if (restoreHP > maxHealth){
+                if (restoreHP < maxHealth){
+                    user.hp = restoreHP
+                }else {
                     user.hp = maxHealth
                 }
-            }
+            
             }
     }
-  
+}
   
   function battleOverCheck(player, opponent){ 
     if (player.hp <= 0){
@@ -207,8 +237,13 @@ function displayAttack(user, target, move_id){
     
         textBox.innerText = ''
         let damage = (user.attack * (user.moves[move_id].power / 10)) / target.defense
-        textBox.innerText = `${user.name} used ${user.moves[move_id].name}! It did ${Math.round(damage)} damage!`
-            if (user.moves[move_id] !== 0 )
-            textBox.innerText = textBox.innerText + ` It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}%!`
+        textBox.innerText = `${user.name} used ${user.moves[move_id].name}!` 
+            if (user.moves[move_id].effect_target !== 7 && (user.moves[move_id].effect_target !== 0)){
+                textBox.innerText = textBox.innerText + ` It did ${Math.round(damage)} damage! It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}!`
+            } else if (user.moves[move_id].effect_target === 7){
+                textBox.innerText = textBox.innerText + ` It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect} percent!`
+            } else {
+                textBox.innerText = textBox.innerText + ` It did ${Math.round(damage)} damage!`
+            } 
 }
 
