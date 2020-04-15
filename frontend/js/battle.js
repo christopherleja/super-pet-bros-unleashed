@@ -50,6 +50,9 @@ function renderBattle(playerPet, petObj){
   `
   playerPetDiv.append(buttonDiv)
 
+  let textBox = document.createElement('div')
+  textBox.id = "text-box"
+
   buttonDiv.addEventListener("click", function(e){
       e.preventDefault()
       if (e.target.id === "move1"){
@@ -67,7 +70,7 @@ function renderBattle(playerPet, petObj){
       } 
       })
 
-      battleDiv.append(opponentDiv, playerPetDiv)
+      battleDiv.append(opponentDiv, playerPetDiv, textBox)
       petBattleDiv.append(battleDiv)
       mainRender.append(petBattleDiv)
 
@@ -107,7 +110,7 @@ function renderBattle(playerPet, petObj){
         }
     let newHP = target.hp - damage
     target.hp = newHP
-       
+    displayAttack(user, target, move_id)
   }
   
   function opponentAttackId(opponent){
@@ -189,3 +192,12 @@ function renderBattle(playerPet, petObj){
   
 }
 
+function displayAttack(user, target, move_id){
+    let textBox = document.querySelector('#text-box')
+    textBox.innerText = ''
+    // debugger
+    let damage = ((user.attack * user.moves[move_id].power) / target.defense) / 10
+    textBox.innerText = `${user.name} used ${user.moves[move_id].name}! It did ${Math.round(damage)} damage!`
+        if (user.moves[move_id] !== 0 )
+        textBox.innerText = textBox.innerText + ` It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}%!`
+}

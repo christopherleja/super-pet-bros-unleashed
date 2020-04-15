@@ -260,6 +260,18 @@ div#button-div{
   grid-gap: 1rem;
 }
 
+div#text-box{
+  background-color: #FFEEDB;
+  width: 20rem;
+  height: 4rem;
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  border-style: double;
+  border-color: black;
+  border-width: 5px;
+}
+
 img#player{
   border-radius: 25%;
 }
