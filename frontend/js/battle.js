@@ -12,6 +12,14 @@ function renderBattle(playerPet, petObj){
   let setBackground = Math.floor(Math.random() * 4)
   battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
 
+    let message = document.createElement('div')
+    message.setAttribute('id', 'message')
+    
+    battleDiv.append(message)
+
+    let anim = document.createElement('div')
+    anim.
+
   const audioDiv = document.createElement('div')
   audioDiv.setAttribute('id', 'audio-player')
   audioDiv.innerHTML = `
@@ -19,18 +27,16 @@ function renderBattle(playerPet, petObj){
   <button onclick="ff7.playPause()" type="button">FF7</button>
   <button onclick="guile.playPause()" type="button">Guile</button>`
   petBattleDiv.append(audioDiv)
-//   ryu.play()
+  ryu.play()
 
-
-
-  let opponent = Object.assign({},petObj)
+  let opponent = Object.assign({}, petObj)
   let player = Object.assign({}, playerPet[0])
-//   let player = playerPet[0]
+
   let opponentDiv = document.createElement('div')
   opponentDiv.id = "opponent-div"
   opponentDiv.innerHTML = `
   <img class="pet-image" id="opponent" src="${opponent['pet-image-url']}"><br />
-  <h2 id=" pet-name">${opponent.name}</h2>
+  <h2 id="pet-name">${opponent.name}</h2>
   <h4 id="opponentHP" data-opponent-hp='${opponent.hp}'>HP: ${opponent.hp} / ${petObj.hp}</h4>
   `
   let playerPetDiv = document.createElement('div')
@@ -156,8 +162,6 @@ function renderBattle(playerPet, petObj){
             if (user.id === player.id){
                 let maxHealth = playerPet[0].hp
                 let restoreHP = user.hp + (maxHealth * (user.moves[move_id].effect/100))
-                console.log(maxHealth)
-                console.log(restoreHP)
                 if (restoreHP > maxHealth){
                     user.hp = maxHealth
                 }
@@ -188,4 +192,18 @@ function renderBattle(playerPet, petObj){
   }
   
 }
+
+function lose() {
+    let message = document.createElement('div')
+    battleDiv.append(message)
+    message.setAttribute('id', 'message')
+    message.innerHTML = `<h1>YOU'RE A LOSER!!!</h2>`
+    }
+
+function win() {
+    let message = document.createElement('div')
+    battleDiv.append(message)
+    message.setAttribute('id', 'message')
+    message.innerHTML = `<h1>YOU'RE A WINNER!!!</h2>`
+    }
 

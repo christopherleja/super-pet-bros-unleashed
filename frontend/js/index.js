@@ -38,11 +38,17 @@ function renderPet(petObj){
     })
 }
 
-headers.addEventListener("click", () => {
-    displayWelcome()
-})
+function stopSound() {
+    ryu.stop()
+    ff7.stop()
+    guile.stop()
+}
+
+
 function displayWelcome() {
     ryu.stop()
+    ff7.stop()
+    guile.stop()
     mainRender.innerHTML = ""
     const welcome = document.createElement('div')
     welcome.setAttribute('id', 'welcome-page')
@@ -56,6 +62,9 @@ function displayWelcome() {
   
 function displayPet(petObj) {
     ryu.stop()
+    ff7.stop()
+    guile.stop()
+
     mainRender.innerHTML = ""
     const petDetailDiv = document.createElement('div')
     petDetailDiv.setAttribute('id', 'pet-details')
