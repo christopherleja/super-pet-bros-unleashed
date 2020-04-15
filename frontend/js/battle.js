@@ -1,9 +1,7 @@
 function renderBattle(playerPet, petObj){
-  const currentBattleCopies = []
-  let playerCopy = playerPet[0]
-  let opponentCopy = petObj
-  currentBattleCopies.push(playerCopy, opponentCopy)
 
+  // change copies to the object's hp
+  // change maxhp to the data attribute
   mainRender.innerHTML = ""
   const petBattleDiv = document.createElement('div')
   petBattleDiv.setAttribute('id', 'pet-battle')
@@ -76,7 +74,6 @@ function renderBattle(playerPet, petObj){
 function turn(player, opponent, move_id){
   let playerHp = document.querySelector("#playerHP")
   let opponentHp = document.querySelector("#opponentHP")
-  debugger
   if (player.speed >= opponent.speed){
       petAttack(player, opponent, move_id)
       opponentHp.innerHTML = `HP: ${opponent.hp} / ${opponentHP.dataset.opponentHp}`
@@ -118,6 +115,8 @@ function opponentAttackId(opponent){
 }
 
 function moveEffect(user, target, move_id){
+  let playerHp = document.querySelector("#playerHP")
+  let opponentHp = document.querySelector("#opponentHP")
   switch (user.moves[move_id].effect_target){
       case 0:
           console.log("no effect")
@@ -153,14 +152,14 @@ function moveEffect(user, target, move_id){
           user.attack = Math.round(increasedAttack)
           break
       case 7:
-          if (user.id === playerCopy.id){
-              let maxHealth = playerCopy.hp
+          if (user.id === player.id){
+              let maxHealth = playerHP.dataset.playerHp
               let restoreHP = user.hp + (user.hp + (user.moves[move_id].effect/100))
               if (restoreHP > maxHealth){
                   user.hp = maxHealth
               }
-          }else if (user.id === opponentCopy.id){
-              let maxHealth = playerCopy.hp
+          }else if (user.id === opponent.id){
+              let maxHealth = opponentHP.dataset.opponentHp
               let restoreHP = user.hp + (user.hp + (user.moves[move_id].effect/100))
               if (restoreHP > maxHealth){
                   user.hp = maxHealth
@@ -175,18 +174,12 @@ function battleOverCheck(player, opponent){
       console.log(`${opponent.name} won the battle!`)
       console.log(`${player.name} fainted.`)
       window.alert("You lose! :(")
-      player = currentBattleCopies[0]
-      opponent = currentBattleCopies[1]
       displayPet(opponent)
-      currentBattleCopies.splice(0, 1)
       
   } else if (opponent.hp <= 0){
       console.log(`${player.name} won the battle!`)
       console.log(`${opponent.name} fainted.`)
       window.alert("You win!")
-      player = currentBattleCopies[0]
-      opponent = currentBattleCopies[1]
-      
-      displayPet(currentBattleCopies[0])
+      displayPet(player)
   }
 }
