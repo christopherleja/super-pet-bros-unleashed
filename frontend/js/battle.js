@@ -63,16 +63,12 @@ function renderBattle(playerPet, petObj){
       e.preventDefault()
       if (e.target.id === "move1"){
           turn(player, opponent, 0)
-          console.log("you used " + `${player.moves[0].name}. It has ${player.moves[0].power} power and ${effectArray[player.moves[0].effect_target]} by ${player.moves[0].effect}%`)
       } else if (e.target.id === "move2"){
           turn(player, opponent, 1)
-          console.log("you used " + `${player.moves[1].name}. It has ${player.moves[1].power} power and ${effectArray[player.moves[1].effect_target]} by ${player.moves[1].effect}%`)
       } else if (e.target.id === "move3"){
           turn(player, opponent, 2)
-          console.log("you used " + `${player.moves[2].name}. It has ${player.moves[2].power} power and ${effectArray[player.moves[2].effect_target]} by ${player.moves[2].effect}%`)
       } else if (e.target.id === "move4"){
           turn(player, opponent, 3)
-          console.log("you used " + `${player.moves[3].name}. It has ${player.moves[3].power} power and ${effectArray[player.moves[3].effect_target]} by ${player.moves[3].effect}%`)
       } 
       })
 
@@ -80,36 +76,38 @@ function renderBattle(playerPet, petObj){
       petBattleDiv.append(battleDiv)
       mainRender.append(petBattleDiv)
 
+    function opponentTurn(opponent, player, move_id){
+        let playerHp = document.querySelector("#playerHP")
+
+        petAttack(opponent, player, opponentAttackId(opponent))
+        playerHp.innerHTML = `HP: ${Math.round(player.hp)} / ${playerPet[0].hp}`
+        moveEffect(opponent, player, opponentAttackId(opponent))
+        battleOverCheck(player, opponent)
+    }
+
+    function playerTurn(player, opponent, move_id){
+        let opponentHp = document.querySelector("#opponentHP")
+
+        petAttack(player, opponent, move_id)
+        opponentHp.innerHTML = `HP: ${Math.round(opponent.hp)} / ${petObj.hp}`
+        moveEffect(player, opponent, move_id)
+        battleOverCheck(player, opponent)
+    }
 
     function turn(player, opponent, move_id){
-        let playerHp = document.querySelector("#playerHP")
-        let opponentHp = document.querySelector("#opponentHP")
         if (player.speed >= opponent.speed){
-            petAttack(player, opponent, move_id)
-            opponentHp.innerHTML = `HP: ${Math.round(opponent.hp)} / ${petObj.hp}`
-            moveEffect(player, opponent, move_id)
-            battleOverCheck(player, opponent)
-            petAttack(opponent, player, opponentAttackId(opponent))
-            playerHp.innerHTML = `HP: ${Math.round(player.hp)} / ${playerPet[0].hp}`
-            moveEffect(opponent, player, opponentAttackId(opponent))
-            battleOverCheck(player, opponent)
-        
+            setTimeout(playerTurn, 500, player, opponent, move_id)            
+            setTimeout(opponentTurn, 2500, opponent, player, move_id)    
         } else if (opponent.speed > player.speed){
-            petAttack(opponent, player, opponentAttackId(opponent))
-            playerHp.innerHTML = `HP: ${Math.round(player.hp)} / ${playerPet[0].hp}`
-            moveEffect(opponent, player, opponentAttackId(opponent))
-            battleOverCheck(player, opponent)
-            petAttack(player, opponent, move_id)
-            opponentHp.innerHTML = `HP: ${Math.round(opponent.hp)} / ${petObj.hp}`
-            moveEffect(player, opponent, move_id)
-            battleOverCheck(player, opponent)
+            setTimeout(opponentTurn, 500, opponent, player, move_id)
+            setTimeout(playerTurn, 2500, player, opponent, move_id)
         }
         
   }
   
   function petAttack(user, target, move_id){
+      setTimeout(function(){
     let attackPower = user.attack * (user.moves[move_id].power/10)
-    console.log("attack = " + attackPower)
     let damage = attackPower / target.defense
         if (damage < 1){
             damage = 1
@@ -117,6 +115,7 @@ function renderBattle(playerPet, petObj){
     let newHP = target.hp - damage
     target.hp = newHP
     displayAttack(user, target, move_id)
+      })
   }
   
   function opponentAttackId(opponent){
@@ -129,36 +128,29 @@ function renderBattle(playerPet, petObj){
     let opponentHp = document.querySelector("#opponentHP")
     switch (user.moves[move_id].effect_target){
         case 0:
-            console.log("no effect")
             break
         case 1:
             let reducedDefense = target.defense - (target.defense * (user.moves[move_id].effect/100))
-            console.log(`${opponent.name} defense is now ` + reducedDefense)
             target.defense = Math.round(reducedDefense)
             break
         case 2:
             let increasedDefense = user.defense + (user.defense * (user.moves[move_id].effect/100))
-            console.log(`${user.name} defense is ` + increasedDefense)
             user.defense = Math.round(increasedDefense)
             break
         case 3:
             let reducedSpeed = target.speed - (target.speed * (user.moves[move_id].effect/100))
-            console.log(`${opponent.name} speed is now ` + reducedSpeed)
             target.speed = Math.round(reducedSpeed)
             break
         case 4: 
             let increasedSpeed = user.speed + (user.speed * (user.moves[move_id].effect/100))
-            console.log(`${user.name} speed is` + increasedSpeed)
             user.speed = Math.round(increasedSpeed)
             break
         case 5:
             let reducedAttack = target.attack - (target.attack * (user.moves[move_id].effect/100))
-            console.log(`${opponent.name} attack is now ` + reducedAttack)
             target.attack = Math.round(reducedAttack)
             break
         case 6:
             let increasedAttack = user.attack + (user.attack * (user.moves[move_id].effect/100))
-            console.log(`${user.name} attack is`  + increasedAttack)
             user.attack = Math.round(increasedAttack)
             break
         case 7:
@@ -212,10 +204,11 @@ function renderBattle(playerPet, petObj){
 
 function displayAttack(user, target, move_id){
     let textBox = document.querySelector('#text-box')
-    textBox.innerText = ''
-    // debugger
-    let damage = ((user.attack * user.moves[move_id].power) / target.defense) / 10
-    textBox.innerText = `${user.name} used ${user.moves[move_id].name}! It did ${Math.round(damage)} damage!`
-        if (user.moves[move_id] !== 0 )
-        textBox.innerText = textBox.innerText + ` It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}%!`
+    
+        textBox.innerText = ''
+        let damage = (user.attack * (user.moves[move_id].power / 10)) / target.defense
+        textBox.innerText = `${user.name} used ${user.moves[move_id].name}! It did ${Math.round(damage)} damage!`
+            if (user.moves[move_id] !== 0 )
+            textBox.innerText = textBox.innerText + ` It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}%!`
 }
+
