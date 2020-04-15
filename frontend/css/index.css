@@ -176,7 +176,16 @@ h4#opponentHP {
 
 .move-button {
   height: 2rem;
-  font-family: "Fipps-Regular"
+  font-family: "Fipps-Regular";
+  background: none;
+  outline: none;
+  border: none;
+  margin: auto;
+}
+
+.pet-button {
+  height: 2rem;
+  font-family: "Fipps-Regular";
 }
 
 .pets-ul {
@@ -268,7 +277,13 @@ div#player-pet-div {
 div#button-div{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
+  background-color: #FFEEDB;
+  width: 25rem;
+  height: 5rem;
+  border-style: double;
+  border-color: black;
+  border-width: 5px;
 }
 
 div#text-box{
