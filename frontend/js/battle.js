@@ -76,7 +76,7 @@ function renderBattle(playerPet, petObj){
     //   debugger
       if (e.target.type === "submit"){
         toggleButtons() 
-        setTimeout(toggleButtons, 2500)
+        setTimeout(toggleButtons, 1500)
       }
       if (e.target.id === "move1"){
           turn(player, opponent, 0)
@@ -119,11 +119,11 @@ function renderBattle(playerPet, petObj){
 
     function turn(player, opponent, move_id){
         if (player.speed >= opponent.speed){
-            setTimeout(playerTurn, 200, player, opponent, move_id)            
-            setTimeout(opponentTurn, 2500, opponent, player, move_id)   
+            setTimeout(playerTurn, 100, player, opponent, move_id)            
+            setTimeout(opponentTurn, 1500, opponent, player, move_id)   
         } else if (opponent.speed > player.speed){
-            setTimeout(opponentTurn, 200, opponent, player, move_id)
-            setTimeout(playerTurn, 2500, player, opponent, move_id)
+            setTimeout(opponentTurn, 100, opponent, player, move_id)
+            setTimeout(playerTurn, 1500, player, opponent, move_id)
         }
         
   }
