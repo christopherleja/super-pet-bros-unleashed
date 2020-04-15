@@ -19,7 +19,7 @@ function renderBattle(playerPet, petObj){
   <button onclick="ff7.playPause()" type="button">FF7</button>
   <button onclick="guile.playPause()" type="button">Guile</button>`
   petBattleDiv.append(audioDiv)
-  ryu.play()
+//   ryu.play()
 
   let opponent = Object.assign({}, petObj)
   let player = Object.assign({}, playerPet[0])
@@ -57,8 +57,12 @@ function renderBattle(playerPet, petObj){
       function toggleButtons() {
         moveButtons.forEach(button => button.disabled = !button.disabled)
      }
-      toggleButtons()
-      setTimeout(toggleButtons, 2500)
+
+    //   debugger
+      if (e.target.type === "submit"){
+        toggleButtons() 
+        setTimeout(toggleButtons, 2500)
+      }
       if (e.target.id === "move1"){
           turn(player, opponent, 0)
       } else if (e.target.id === "move2"){
@@ -100,10 +104,10 @@ function renderBattle(playerPet, petObj){
 
     function turn(player, opponent, move_id){
         if (player.speed >= opponent.speed){
-            setTimeout(playerTurn, 500, player, opponent, move_id)            
+            setTimeout(playerTurn, 200, player, opponent, move_id)            
             setTimeout(opponentTurn, 2500, opponent, player, move_id)   
         } else if (opponent.speed > player.speed){
-            setTimeout(opponentTurn, 500, opponent, player, move_id)
+            setTimeout(opponentTurn, 200, opponent, player, move_id)
             setTimeout(playerTurn, 2500, player, opponent, move_id)
         }
         
