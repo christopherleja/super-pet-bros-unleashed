@@ -102,10 +102,12 @@ function displayPet(petObj) {
     let choosePetButton = document.createElement('button')
     choosePetButton.id = "choose-pet-btn"
     choosePetButton.innerText = `Choose ${petObj.name}`
+    choosePetButton.setAttribute('class', 'move-button')
 
     let battleButton = document.createElement('button')
     battleButton.id = "battle-btn"
     battleButton.innerText = `Battle ${petObj.name}`
+    battleButton.setAttribute('class', 'move-button')
 
     petDetailDiv.append(choosePetButton, battleButton)
     mainRender.append(petDetailDiv)

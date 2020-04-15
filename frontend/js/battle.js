@@ -18,7 +18,7 @@ function renderBattle(playerPet, petObj){
     battleDiv.append(message)
 
     let anim = document.createElement('div')
-    anim.
+    // anim.
 
   const audioDiv = document.createElement('div')
   audioDiv.setAttribute('id', 'audio-player')
@@ -49,12 +49,15 @@ function renderBattle(playerPet, petObj){
   let buttonDiv = document.createElement('div')
   buttonDiv.id = "button-div"
   buttonDiv.innerHTML = `
-  <button id="move1">${player.moves[0].name}</button>
-  <button id="move2">${player.moves[1].name}</button>
-  <button id="move3">${player.moves[2].name}</button>
-  <button id="move4">${player.moves[3].name}</button>
+  <button id="move1" class="move-button">${player.moves[0].name}</button>
+  <button id="move2" class="move-button">${player.moves[1].name}</button>
+  <button id="move3" class="move-button">${player.moves[2].name}</button>
+  <button id="move4" class="move-button">${player.moves[3].name}</button>
   `
   playerPetDiv.append(buttonDiv)
+
+  let textBox = document.createElement('div')
+  textBox.id = "text-box"
 
   buttonDiv.addEventListener("click", function(e){
       e.preventDefault()
@@ -73,7 +76,7 @@ function renderBattle(playerPet, petObj){
       } 
       })
 
-      battleDiv.append(opponentDiv, playerPetDiv)
+      battleDiv.append(opponentDiv, playerPetDiv, textBox)
       petBattleDiv.append(battleDiv)
       mainRender.append(petBattleDiv)
 
@@ -113,7 +116,7 @@ function renderBattle(playerPet, petObj){
         }
     let newHP = target.hp - damage
     target.hp = newHP
-       
+    displayAttack(user, target, move_id)
   }
   
   function opponentAttackId(opponent){
@@ -150,7 +153,7 @@ function renderBattle(playerPet, petObj){
             break
         case 5:
             let reducedAttack = target.attack - (target.attack * (user.moves[move_id].effect/100))
-            console.log(`${opponent.name} attack is now ` +reducedAttack)
+            console.log(`${opponent.name} attack is now ` + reducedAttack)
             target.attack = Math.round(reducedAttack)
             break
         case 6:
@@ -193,17 +196,26 @@ function renderBattle(playerPet, petObj){
   
 }
 
-function lose() {
-    let message = document.createElement('div')
-    battleDiv.append(message)
-    message.setAttribute('id', 'message')
-    message.innerHTML = `<h1>YOU'RE A LOSER!!!</h2>`
-    }
+// function lose() {
+//     let message = document.createElement('div')
+//     battleDiv.append(message)
+//     message.setAttribute('id', 'message')
+//     message.innerHTML = `<h1>YOU'RE A LOSER!!!</h2>`
+//     }
 
-function win() {
-    let message = document.createElement('div')
-    battleDiv.append(message)
-    message.setAttribute('id', 'message')
-    message.innerHTML = `<h1>YOU'RE A WINNER!!!</h2>`
-    }
+// function win() {
+//     let message = document.createElement('div')
+//     battleDiv.append(message)
+//     message.setAttribute('id', 'message')
+//     message.innerHTML = `<h1>YOU'RE A WINNER!!!</h2>`
+//     }
 
+function displayAttack(user, target, move_id){
+    let textBox = document.querySelector('#text-box')
+    textBox.innerText = ''
+    // debugger
+    let damage = ((user.attack * user.moves[move_id].power) / target.defense) / 10
+    textBox.innerText = `${user.name} used ${user.moves[move_id].name}! It did ${Math.round(damage)} damage!`
+        if (user.moves[move_id] !== 0 )
+        textBox.innerText = textBox.innerText + ` It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}%!`
+}

@@ -4,7 +4,11 @@
 'Anton', sans-serif;
 'Bebas Neue', cursive;
 'Montserrat Subrayada', sans-serif; */
-
+@font-face {
+  font-family: "Fipps-Regular";
+  src: url("css/fonts/Fipps-Regular.otf");
+  }
+    
 :root {
   font-size: 16px;
   font-family: 'Fira Sans Condensed', sans-serif;
@@ -158,6 +162,8 @@ header{
 
 h2#pet-name {
   margin-bottom: 0;
+  text-transform: uppercase;
+  font-family: 'Fugaz One', cursive;
 }
 
 h4#playerHP {
@@ -166,6 +172,11 @@ h4#playerHP {
 
 h4#opponentHP {
   margin-top: 0;
+}
+
+.move-button {
+  height: 2rem;
+  font-family: "Fipps-Regular"
 }
 
 .pets-ul {
@@ -258,6 +269,20 @@ div#button-div{
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
+}
+
+div#text-box{
+  background-color: #FFEEDB;
+  width: 22rem;
+  height: 5.5rem;
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  border-style: double;
+  border-color: black;
+  border-width: 5px;
+  font-family: "Fipps-Regular";
+  font-size: 12px;
 }
 
 img#player{
@@ -360,6 +385,7 @@ footer {
   text-shadow: 3px 3px#61C9A8;
   font-family: 'Montserrat Subrayada', sans-serif;
 }
+
 #anim {
   width: 50px;
   height: 
