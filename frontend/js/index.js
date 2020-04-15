@@ -6,6 +6,7 @@ const playerPet = []
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
 
+
 const backgrounds = ["./css/images/liquorstore.jpeg", "./css/images/forestscape.jpg", "./css/images/mountainscape.jpg", "./css/images/pixelbackground.jpg"]
 let ryu = new sound("./css/sound/Ryu_theme.mp3")
 let ff7 = new sound("./css/sound/Fight_on_theme.mp3")
@@ -155,5 +156,4 @@ function sound(src) {
         }
     }
 }
-
 

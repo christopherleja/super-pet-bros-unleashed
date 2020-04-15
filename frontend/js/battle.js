@@ -12,7 +12,6 @@ function renderBattle(playerPet, petObj){
   let setBackground = Math.floor(Math.random() * 4)
   battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
 
-
   const audioDiv = document.createElement('div')
   audioDiv.setAttribute('id', 'audio-player')
   audioDiv.innerHTML = `
@@ -54,6 +53,12 @@ function renderBattle(playerPet, petObj){
 
   buttonDiv.addEventListener("click", function(e){
       e.preventDefault()
+      let moveButtons = document.querySelectorAll(".move-button")
+      function toggleButtons() {
+        moveButtons.forEach(button => button.disabled = !button.disabled)
+     }
+      toggleButtons()
+      setTimeout(toggleButtons, 2500)
       if (e.target.id === "move1"){
           turn(player, opponent, 0)
       } else if (e.target.id === "move2"){
@@ -90,7 +95,7 @@ function renderBattle(playerPet, petObj){
     function turn(player, opponent, move_id){
         if (player.speed >= opponent.speed){
             setTimeout(playerTurn, 500, player, opponent, move_id)            
-            setTimeout(opponentTurn, 2500, opponent, player, move_id)    
+            setTimeout(opponentTurn, 2500, opponent, player, move_id)   
         } else if (opponent.speed > player.speed){
             setTimeout(opponentTurn, 500, opponent, player, move_id)
             setTimeout(playerTurn, 2500, player, opponent, move_id)
@@ -204,4 +209,5 @@ function displayAttack(user, target, move_id){
             if (user.moves[move_id] !== 0 )
             textBox.innerText = textBox.innerText + ` It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}%!`
 }
+
 
