@@ -6,7 +6,7 @@
 'Montserrat Subrayada', sans-serif; */
 @font-face {
   font-family: "Fipps-Regular";
-  src: url("css/fonts/Fipps-Regular.otf");
+  src: url("./fonts/Fipps-Regular.otf");
   }
     
 :root {
@@ -141,11 +141,15 @@ header{
 
 #main-render {
   height: 100%;
+  display: flex;
 }
 
 #welcome-page {
   margin: 3rem;
   height: 100vh;
+}
+
+.welcome-header {
   text-transform: uppercase;
   font-family: 'Fugaz One', cursive;
   text-shadow: 2px 2px #A53860;
@@ -354,6 +358,11 @@ h4#opponentHP {
   border: 1px solid black;
 }
 
+.selected-pet {
+  position: absolute;
+  right: 3rem;
+}
+
 footer {
   font-size: 2rem;
   font-family: 'Bebas Neue', cursive;
@@ -376,16 +385,18 @@ footer {
   width: 70px;
 }
 
-/* #message {
+#message {
   width: 35rem;
   height: 12rem;
-  left: 5rem;
+  left: 28rem;
   position: absolute;
   top: 76px;
   text-shadow: 3px 3px#61C9A8;
   font-family: 'Montserrat Subrayada', sans-serif;
+  display: inline-block;
+  background-image: url('./images/comic-kapow1.jpg')
 }
 
 #anim {
   width: 50px;
-} */
+}

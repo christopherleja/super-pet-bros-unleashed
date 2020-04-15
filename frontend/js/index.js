@@ -2,6 +2,9 @@ const BASE_URL = "http://localhost:3000/"
 const petList = document.querySelector(".pets-ul")
 const mainRender = document.querySelector("#main-render")
 const headers = document.querySelector("#headers")
+const selectedPetDiv = document.querySelector('.selected-pet')
+const petDetailDiv = document.querySelector('.pet-details')
+const container = document.querySelector('.container')
 const playerPet = []
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
@@ -44,12 +47,11 @@ function stopSound() {
     guile.stop()
 }
 
-
 function displayWelcome() {
     ryu.stop()
     ff7.stop()
     guile.stop()
-    mainRender.innerHTML = ""
+    container.innerHTML = ""
     const welcome = document.createElement('div')
     welcome.setAttribute('id', 'welcome-page')
     const header = document.createElement('h1')
@@ -57,7 +59,7 @@ function displayWelcome() {
     header.textContent = 'Welcome to Super Pet Bros. Unleashed!'
 
     welcome.append(header)
-    mainRender.append(welcome)
+    container.append(welcome)
 }
   
 function displayPet(petObj) {
@@ -65,8 +67,7 @@ function displayPet(petObj) {
     ff7.stop()
     guile.stop()
 
-    mainRender.innerHTML = ""
-    const petDetailDiv = document.createElement('div')
+    container.innerHTML = ""
     petDetailDiv.setAttribute('id', 'pet-details')
     petDetailDiv.innerHTML = `
     <img class="pet-image" src="${petObj['pet-image-url']}"><br />
@@ -110,23 +111,59 @@ function displayPet(petObj) {
     battleButton.setAttribute('class', 'move-button')
 
     petDetailDiv.append(choosePetButton, battleButton)
-    mainRender.append(petDetailDiv)
+    container.append(petDetailDiv)
 
     choosePetButton.addEventListener("click", function(e){
         e.preventDefault()
             if (playerPet.length > 0){
                 playerPet.pop()
                 playerPet.push(petObj)
+                selectedPet(playerPet[0])
             }else {
                 playerPet.push(petObj)
+                selectedPet(playerPet[0])
             }
     })
-
     battleButton.addEventListener("click", function(e){
         e.preventDefault()
         renderBattle(playerPet, petObj)
         
     })
+}
+
+function selectedPet(petObj) {
+    selectedPetDiv.innerHTML = `
+    <h1 class="welcome-header">Selected Pet</h1>
+    <img class="pet-image" src="${petObj['pet-image-url']}"><br />
+    <h2 id="pet-name">${petObj.name}</h2>
+    <ul class="pet-stat-ul">
+        <li>HP: ${petObj.hp}</li>
+        <li>Attack: ${petObj.attack}</li>
+        <li>Defense: ${petObj.defense}</li>
+        <li>Speed: ${petObj.speed}</li>
+    </ul>
+    <ol class="pet-move-ol">
+        <li>${petObj.moves[0].name}</li>
+            <ul class="move-stats-ul">
+                <li>Power: ${petObj.moves[0].power}</li>
+                <li>Effect: ${effectArray[petObj.moves[0].effect_target]} by ${petObj.moves[0].effect}%</li>
+            </ul>
+        <li>${petObj.moves[1].name}</li>
+            <ul class="move-stats-ul">
+                <li>Power: ${petObj.moves[1].power}</li>
+                <li>Effect: ${effectArray[petObj.moves[1].effect_target]} by ${petObj.moves[1].effect}%</li>
+            </ul>
+        <li>${petObj.moves[2].name}</li>
+            <ul class="move-stats-ul">
+                <li>Power: ${petObj.moves[2].power}</li>
+                <li>Effect: ${effectArray[petObj.moves[2].effect_target]} by ${petObj.moves[2].effect}%</li>
+            </ul>
+        <li>${petObj.moves[3].name}</li>
+            <ul class="move-stats-ul">
+                <li>Power: ${petObj.moves[3].power}</li>
+                <li>Effect: ${effectArray[petObj.moves[3].effect_target]} by ${petObj.moves[3].effect}%</li>
+            </ul>
+    `
 }
 
 createTab.addEventListener("click", ()=> {
@@ -156,4 +193,4 @@ function sound(src) {
     }
 }
 
-
+displayWelcome()
