@@ -86,11 +86,11 @@ function turn(player, opponent, move_id){
   
   } else if (opponent.speed > player.speed){
       petAttack(opponent, player, opponentAttackId(opponent))
-      playerHp.innerHTML = `HP: ${player.hp} / ${playerHp.dataset["player-hp"]}`
+      playerHp.innerHTML = `HP: ${player.hp} / ${playerHp.dataset.playerHp}`
       moveEffect(opponent, player, opponentAttackId(opponent))
       battleOverCheck(player, opponent)
       petAttack(player, opponent, move_id)
-      opponentHp.innerHTML = `HP: ${opponent.hp} / ${opponentHp.dataset["opponent-hp"]}`
+      opponentHp.innerHTML = `HP: ${opponent.hp} / ${opponentHp.dataset.playerHp}`
       moveEffect(player, opponent, move_id)
       battleOverCheck(player, opponent)
   }
