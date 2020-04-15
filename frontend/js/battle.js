@@ -40,16 +40,31 @@ function renderBattle(playerPet, petObj){
   `
   let buttonDiv = document.createElement('div')
   buttonDiv.id = "button-div"
+  // STRETCH use for loop to build the div with createElement
   buttonDiv.innerHTML = `
-  <button id="move1" class="move-button">${player.moves[0].name}</button>
-  <button id="move2" class="move-button">${player.moves[1].name}</button>
-  <button id="move3" class="move-button">${player.moves[2].name}</button>
-  <button id="move4" class="move-button">${player.moves[3].name}</button>
+  <button id="move1" class="move-button">
+    ${player.moves[0].name}
+    </button>
+  <button id="move2" class="move-button">
+    ${player.moves[1].name}
+    </button>
+  <button id="move3" class="move-button">
+    ${player.moves[2].name}
+    </button>
+  <button id="move4" class="move-button">
+    ${player.moves[3].name}
+    </button>
   `
   playerPetDiv.append(buttonDiv)
 
   let textBox = document.createElement('div')
   textBox.id = "text-box"
+
+  const moveButtonArrowDiv = document.querySelector(".move-button-arrow");
+
+  buttonDiv.addEventListener("hover", function(e) {
+    moveButtonArrowDiv.style.display = "inline-block";
+  });
 
   buttonDiv.addEventListener("click", function(e){
       e.preventDefault()

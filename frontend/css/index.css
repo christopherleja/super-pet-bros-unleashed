@@ -183,6 +183,13 @@ h4#opponentHP {
   margin: auto;
 }
 
+.move-button:hover::before {
+  font-family: sans-serif;
+  content:"\25b6";
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
 .pet-button {
   height: 2rem;
   font-family: "Fipps-Regular";
