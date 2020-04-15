@@ -12,13 +12,6 @@ function renderBattle(playerPet, petObj){
   let setBackground = Math.floor(Math.random() * 4)
   battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
 
-    let message = document.createElement('div')
-    message.setAttribute('id', 'message')
-    
-    battleDiv.append(message)
-
-    let anim = document.createElement('div')
-    // anim.
 
   const audioDiv = document.createElement('div')
   audioDiv.setAttribute('id', 'audio-player')
