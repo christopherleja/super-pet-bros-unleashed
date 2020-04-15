@@ -5,7 +5,15 @@ const headers = document.querySelector("#headers")
 const playerPet = []
 const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
-let effectArray = ["none", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
+
+const backgrounds = ["./css/images/forestscape.jpg", "./css/images/mountainscape.jpg", "./css/images/pixelbackground.jpg"]
+let ryu = new sound("./css/sound/Ryu_theme.mp3")
+let ff7 = new sound("./css/sound/Fight_on_theme.mp3")
+let guile = new sound("./css/sound/Guile_theme.mp3")
+
+const effectArray = ["none", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
+
+
 
 fetch(BASE_URL + "pets")
     .then(response => response.json())
@@ -15,11 +23,9 @@ fetch(BASE_URL + "pets")
 });
 
 function renderPet(petObj){
-    
     let petNameLi = document.createElement('li')
     let petNameSpan = document.createElement('span')
     
-    // petNameLi.id = `${petObj.id}`
     petNameSpan.innerText = `${petObj.name}`
     petNameSpan.className = "pets-name-text"
     petNameLi.className = "pets-li"
@@ -34,9 +40,10 @@ function renderPet(petObj){
 }
 
 headers.addEventListener("click", () => {
-  displayWelcome()
+    displayWelcome()
 })
 function displayWelcome() {
+    ryu.stop()
     mainRender.innerHTML = ""
     const welcome = document.createElement('div')
     welcome.setAttribute('id', 'welcome-page')
@@ -49,6 +56,7 @@ function displayWelcome() {
 }
   
 function displayPet(petObj) {
+    ryu.stop()
     mainRender.innerHTML = ""
     const petDetailDiv = document.createElement('div')
     petDetailDiv.setAttribute('id', 'pet-details')
@@ -91,7 +99,7 @@ function displayPet(petObj) {
     battleButton.id = "battle-btn"
     battleButton.innerText = `Battle ${petObj.name}`
 
-    petDetailDiv.append(battleButton, choosePetButton)
+    petDetailDiv.append(choosePetButton, battleButton)
     mainRender.append(petDetailDiv)
 
     choosePetButton.addEventListener("click", function(e){
@@ -107,64 +115,30 @@ function displayPet(petObj) {
     battleButton.addEventListener("click", function(e){
         e.preventDefault()
         renderBattle(playerPet, petObj)
-        console.log("initiating battle")
+        
     })
 }
 
-function renderBattle(playerPet, petObj){
-    mainRender.innerHTML = ""
-    const petBattleDiv = document.createElement('div')
-    petBattleDiv.setAttribute('id', 'pet-battle')
-    let opponent = petObj
-    let player = playerPet[0]
-    let opponentDiv = document.createElement('div')
-    opponentDiv.id = "opponent-div"
-    opponentDiv.innerHTML = `
-    <img class="pet-image" id="opponent" src="${opponent['pet-image-url']}"><br />
-    <h2 id="pet-name">${opponent.name}</h2>
-    <h4 id="opponentHP">HP: ${opponent.hp}</h4>
-    `
-    let playerPetDiv = document.createElement('div')
-    playerPetDiv.id = "player-pet-div"
-    playerPetDiv.innerHTML = `
-    <img class="pet-image" id="player" src="${player['pet-image-url']}"><br />
-    <h2 id="pet-name">${player.name}</h2>
-    <h4 id="playerHP">HP: ${player.hp}</h4>
-    <button id="move1">${player.moves[0].name}</button>
-    <button id="move2">${player.moves[1].name}</button>
-    <button id="move3">${player.moves[2].name}</button>
-    <button id="move4">${player.moves[3].name}</button>
-    `
-    let move1 = playerPetDiv.querySelector('#move1')
-    let move2 = playerPetDiv.querySelector('#move2')
-    let move3 = playerPetDiv.querySelector('#move3')
-    let move4 = playerPetDiv.querySelector('#move4')
-
-    move1.addEventListener("click", function(e){
-        e.preventDefault()
-        console.log("you used " + `${player.moves[0].name}. It has ${player.moves[0].power} power and ${effectArray[player.moves[0].effect_target]} by ${player.moves[0].effect}%`)
-    })
-
-    move2.addEventListener("click", function(e){
-        e.preventDefault()
-        console.log("you used " + `${player.moves[1].name}. It has ${player.moves[1].power} power and ${effectArray[player.moves[1].effect_target]} by ${player.moves[1].effect}%`)
-    })
-
-    move3.addEventListener("click", function(e){
-        e.preventDefault()
-        console.log("you used " + `${player.moves[2].name}. It has ${player.moves[2].power} power and ${effectArray[player.moves[2].effect_target]} by ${player.moves[2].effect}%`)
-    })
-
-    move4.addEventListener("click", function(e){
-        e.preventDefault()
-        console.log("you used " + `${player.moves[3].name}. It has ${player.moves[3].power} power and ${effectArray[player.moves[3].effect_target]} by ${player.moves[3].effect}%`)
-    })
-
-    petBattleDiv.append(opponentDiv, playerPetDiv)
-  mainRender.append(petBattleDiv)
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+    this.playPause = function(){
+        if(this.sound.paused){
+            this.sound.play()
+        } else {
+            this.sound.pause()
+        }
+    }
 }
 
-createTab.addEventListener("click", () => {
-  createPet()
-})
 

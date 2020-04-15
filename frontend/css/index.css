@@ -16,6 +16,7 @@ body {
   background-image: url("./images/pixelbackground.jpg");
   background-repeat: repeat-y;
   background-size: cover;
+  background-position: top;
 }
 
 header{
@@ -28,7 +29,7 @@ header{
   font-size: 2rem;
   font-family: 'Russo One', sans-serif;
   padding-top: 1rem;
-  text-shadow: 2px 2px white;
+  text-shadow: 3px 3px white;
   margin: 0;
 }
 
@@ -40,7 +41,7 @@ header{
   left: 38.5%;
   top: 2rem;
   margin: 0;
-  text-shadow: 2px 2px #A53860;
+  text-shadow: 3px 3px #A53860;
 }
 
 #navbar {
@@ -60,8 +61,21 @@ header{
   top: 15vh;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  font-family: 'Russo One', sans-serif;
+  font-family: 'Fugaz One', cursive;
   padding: 0 7rem;
+}
+
+.navbar-ul2 {
+  display: flex;
+  justify-content: center;
+  background-color: maroon;
+  height: 1.5rem;
+  font-size: 1rem;
+  margin: 0;
+  top: 16vh;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-family: 'Fugaz One', cursive;
 }
 
 .navbar-ul li {
@@ -89,19 +103,19 @@ header{
 }
 
 .pets-tab:hover {
-  color: #A53860;
+  text-shadow: 2px 2px#A53860;
   transition: 600ms;
   cursor: pointer;
 }
 
 .create-tab:hover {
-  color: #A53860;
+  text-shadow: 2px 2px#A53860;
   transition: 600ms;
   cursor: pointer;
 }
 
 .battle-tab:hover {
-  color: #A53860;
+  text-shadow: 2px 2px#A53860;
   transition: 600ms;
   cursor: pointer;
 }
@@ -130,6 +144,7 @@ header{
   height: 100vh;
   text-transform: uppercase;
   font-family: 'Fugaz One', cursive;
+  text-shadow: 2px 2px #A53860;
 }
 
 #headers {
@@ -141,12 +156,25 @@ header{
   border-right: 1px solid black;
 }
 
+h2#pet-name {
+  margin-bottom: 0;
+}
+
+h4#playerHP {
+  margin-top: 0;
+}
+
+h4#opponentHP {
+  margin-top: 0;
+}
+
 .pets-ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
+  width: 18rem;
 }
 
 .pets-li {
@@ -156,6 +184,7 @@ header{
   font-family: 'Fugaz One', cursive;
   text-transform: uppercase;
   padding: 1rem 0 1rem 0;
+  color: black;
 }
 
 .pets-name-text {
@@ -166,6 +195,7 @@ header{
   background-color: rgb(228, 174, 112);
   transition: 600ms;
   cursor: pointer;
+  text-shadow: 2px 2px#A53860;
 }
 
 #pet-details {
@@ -177,26 +207,37 @@ header{
   width: 15rem;
   height: 15rem;
   object-fit: cover;
-}
-
-#pet-details {
-  
+  border: 1px solid black;
 }
 
 #pet-create {
-  
   margin: 1rem 1rem;
 }
 
 #pet-battle {
-  height: 45rem;
-  width: 40rem;
+  height: 40rem;
+  width: 100rem;
+  display: flex;
+}
+
+div#battle-div {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 35rem;
+  width: 48rem;
+  background-size: cover;
+  padding: 0;
+  position: relative;
+  top: auto;
+  left: 7px;
 }
 
 div#opponent-div {
   position: absolute;
-  right: 1rem;
+  right: 2rem;
   top: 1rem;
+  margin: 0;
 }
 
 img#opponent {
@@ -208,8 +249,12 @@ img#opponent {
 
 div#player-pet-div {
   position: absolute;
-  left: 19rem;
-  bottom: 1rem;
+  left: 2rem;
+  bottom: -4rem;
+  margin: 0;
+}
+
+div#button-div{
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
@@ -217,6 +262,18 @@ div#player-pet-div {
 
 img#player{
   border-radius: 25%;
+}
+
+h2#pet-name {
+  margin-bottom: 0;
+}
+
+h4#playerHP {
+  margin-top: 0;
+}
+
+h4#opponentHP {
+  margin-top: 0;
 }
 
 .stats-container {
@@ -278,4 +335,15 @@ footer {
   background-image: url("./images/pixelbackground.jpg");
   background-size: cover;
   background-position: bottom;
+}
+
+#audio-player {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 5px;
+}
+
+#audio-player button {
+  width: 70px;
 }

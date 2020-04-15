@@ -10,14 +10,18 @@ function renderBattle(playerPet, petObj){
 
   const battleDiv = document.createElement('div')
   battleDiv.setAttribute('id', 'battle-div')
-  // const setBackground = Math.round(Math.random() * 3)
-  // battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
+
+  let setBackground = Math.floor(Math.random() * 3)
+  battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
 
   const audioDiv = document.createElement('div')
   audioDiv.setAttribute('id', 'audio-player')
-  audioDiv.innerHTML = `<button onclick="mySound.playPause()" type="button">Play/Pause</button>`
+  audioDiv.innerHTML = `
+  <button onclick="ryu.playPause()" type="button">Ryu</button>
+  <button onclick="ff7.playPause()" type="button">FF7</button>
+  <button onclick="guile.playPause()" type="button">Guile</button>`
   petBattleDiv.append(audioDiv)
-  mySound.play()
+  ryu.play()
 
   let opponent = petObj
   let player = playerPet[0]
