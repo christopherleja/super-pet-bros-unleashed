@@ -74,20 +74,26 @@ function renderBattle(playerPet, petObj){
       petBattleDiv.append(battleDiv)
       mainRender.append(petBattleDiv)
 
-    function opponentTurn(opponent, player, move_id){
+    function updatePlayerHp(player){
         let playerHp = document.querySelector("#playerHP")
-
-        petAttack(opponent, player, opponentAttackId(opponent))
         playerHp.innerHTML = `HP: ${Math.round(player.hp)} / ${playerPet[0].hp}`
+    }
+
+    function updateOpponentHp(opponent){
+        let opponentHp = document.querySelector("#opponentHP")
+        opponentHp.innerHTML = `HP: ${Math.round(opponent.hp)} / ${petObj.hp}`
+    }
+
+    function opponentTurn(opponent, player, move_id){
+        petAttack(opponent, player, opponentAttackId(opponent))
+        updatePlayerHp(player)
         moveEffect(opponent, player, opponentAttackId(opponent))
         battleOverCheck(player, opponent)
     }
 
     function playerTurn(player, opponent, move_id){
-        let opponentHp = document.querySelector("#opponentHP")
-
         petAttack(player, opponent, move_id)
-        opponentHp.innerHTML = `HP: ${Math.round(opponent.hp)} / ${petObj.hp}`
+        updateOpponentHp(opponent)
         moveEffect(player, opponent, move_id)
         battleOverCheck(player, opponent)
     }
@@ -104,7 +110,6 @@ function renderBattle(playerPet, petObj){
   }
   
   function petAttack(user, target, move_id){
-      setTimeout(function(){
     let attackPower = user.attack * (user.moves[move_id].power/10)
     let damage = attackPower / target.defense
         if (damage < 1){
@@ -113,7 +118,6 @@ function renderBattle(playerPet, petObj){
     let newHP = target.hp - damage
     target.hp = newHP
     displayAttack(user, target, move_id)
-      })
   }
   
   function opponentAttackId(opponent){

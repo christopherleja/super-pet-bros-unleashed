@@ -125,8 +125,11 @@ function displayPet(petObj) {
 
     battleButton.addEventListener("click", function(e){
         e.preventDefault()
+        if (playerPet.length === 1){
         renderBattle(playerPet, petObj)
-        
+        } else {
+            window.alert("You have to choose a pet before you can battle!")
+        }
     })
 }
 
