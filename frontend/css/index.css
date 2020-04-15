@@ -216,7 +216,7 @@ h4#opponentHP {
 
 #pet-battle {
   height: 40rem;
-  width: 100rem;
+  width: 60rem;
   display: flex;
 }
 
@@ -346,4 +346,14 @@ footer {
 
 #audio-player button {
   width: 70px;
+}
+
+#message {
+  width: 35rem;
+  height: 12rem;
+  left: 5rem;
+  position: absolute;
+  top: 76px;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
 }

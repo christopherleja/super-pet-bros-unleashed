@@ -118,6 +118,11 @@ function displayPet(petObj) {
     })
 }
 
+createTab.addEventListener("click", ()=> {
+    createPet()
+})
+
+
 function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
