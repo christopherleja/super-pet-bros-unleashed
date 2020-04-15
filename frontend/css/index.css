@@ -6,7 +6,7 @@
 'Montserrat Subrayada', sans-serif; */
 @font-face {
   font-family: "Fipps-Regular";
-  src: url("css/fonts/Fipps-Regular.otf");
+  src: url("./fonts/Fipps-Regular.otf");
   }
     
 :root {
