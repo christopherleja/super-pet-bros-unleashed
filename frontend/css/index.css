@@ -59,12 +59,26 @@ header{
   height: 4.6rem;
 }
 
+.navbar-ul:hover {
+  background: linear-gradient(90deg, #9ebd13 0%, #008552 100%);
+  animation-name: changehue;
+  animation-iteration-count: infinite;
+  animation-duration: 1.5s;
+}
+
+@keyframes changehue {
+  to {
+    filter: hue-rotate(120deg);
+    transition: 1000ms linear;
+  }
+}
+
 .navbar-ul {
   list-style: none;
   display: flex;
   justify-content: center;
   background-color: #61C9A8;
-  height: 2.5rem;
+  height: 4rem;
   font-size: 2rem;
   margin: 0;
   top: 15vh;
@@ -72,6 +86,7 @@ header{
   border-bottom: 1px solid black;
   font-family: 'Fugaz One', cursive;
   padding: 0 7rem;
+  align-items: center;
 }
 
 .navbar-ul2 {
@@ -141,6 +156,7 @@ header{
   border-right: 1px solid black;
   display: flex;
   position: relative;
+  top: 24px;
 }
 
 #main-render {
@@ -151,6 +167,7 @@ header{
 #welcome-page {
   margin: 3rem;
   height: 100vh;
+  text-align: center;
 }
 
 .welcome-header {
@@ -163,6 +180,11 @@ header{
   text-transform: uppercase;
   font-family: 'Fugaz One', cursive;
   text-shadow: 2px 2px #A53860;
+}
+
+.rules {
+  text-transform: uppercase;
+  font-family: 'Fugaz One', cursive;
 }
 
 #headers {
@@ -240,7 +262,7 @@ h4#opponentHP {
 }
 
 #pet-details {
-  margin: 3rem;
+  margin: 1rem 3rem 3rem 3rem;
   max-height: 100%;
 }
 
@@ -453,19 +475,20 @@ h4#opponentHP {
   position: absolute;
   right: 0;
   width: 25rem;
-  padding: 2rem;
   display: none;
+  margin: 0 3rem 3rem 3rem;
 }
 
 footer {
   font-size: 2rem;
   font-family: 'Bebas Neue', cursive;
-  bottom: 0;
+  bottom: -24px;
   width: 100%;
   border-top: 1px solid black;
   background-image: url("./images/pixelbackground.jpg");
   background-size: cover;
   background-position: bottom;
+  position: relative;
 }
 
 #audio-player {
@@ -708,7 +731,7 @@ footer {
   font-family: 'Montserrat Subrayada', sans-serif;
   display: none;
   background-image: url(./images/effects/explosion.gif);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   z-index: 100;
   transform: rotate(-16deg);
@@ -719,7 +742,7 @@ footer {
   position: relative;
   width: 100%;
   min-height: 60vh;
-  top: -25px;
+  top: 0;
   background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
   z-index: 1;
 }
@@ -768,3 +791,6 @@ footer {
     transform: rotateX(25deg) translateZ(-2500px);
   }
 }
+
+
+

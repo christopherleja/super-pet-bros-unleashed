@@ -244,12 +244,16 @@ function renderBattle(playerPet, petObj){
           console.log(`${player.name} fainted.`)
           kirby.play()
           lose()
+          let moveButtons = document.querySelectorAll(".move-button")
+          moveButtons.forEach(button => button.disabled = !button.disabled)
           return true
       } else if (Math.floor(opponent.hp) <= 0){
           console.log(`${player.name} won the battle!`)
           console.log(`${opponent.name} fainted.`)
           pokemonSuccess.play()
           win()
+          let moveButtons = document.querySelectorAll(".move-button")
+          moveButtons.forEach(button => button.disabled = !button.disabled)
           return true
       } else {
           return false

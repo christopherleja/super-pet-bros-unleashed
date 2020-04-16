@@ -53,8 +53,13 @@ function displayWelcome() {
     const header = document.createElement('h1')
     header.setAttribute('class', 'welcome-header')
     header.textContent = 'Welcome to Super Pet Bros. Unleashed!'
-
-    welcome.append(header)
+    const rules1 = document.createElement('h3')
+    const rules2 = document.createElement('h4')
+    rules1.classList.add("rules")
+    rules2.classList.add("rules")
+    rules1.textContent = "To enter the arena, select NEW PET, or choose an existing pet from the menu"
+    rules2.innerHTML = "Use your pet's abilities to defeat your opponent, <strike>just like in pokemon!</strike>"
+    welcome.append(header, rules1, rules2)
     container.append(welcome)
 }
   
