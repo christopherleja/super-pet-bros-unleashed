@@ -63,6 +63,7 @@ function renderBattle(playerPet, petObj){
         startDiv.style.backgroundImage = "url('./css/images/gameoverbit.png')"
     }
 
+
   const audioDiv = document.createElement('div')
   audioDiv.setAttribute('id', 'audio-player')
   audioDiv.innerHTML = `
