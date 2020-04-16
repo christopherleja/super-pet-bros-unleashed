@@ -226,16 +226,18 @@ function renderBattle(playerPet, petObj){
 
 function displayAttack(user, target, move_id){
     let textBox = document.querySelector('#text-box')
+    let opp = target.name
+    let effectArrWithNames = [`none`, `reduces ${opp}'s defense`, `increases defense`, `lowers ${opp}'s speed`, `increases speed`, `lowers ${opp}'s attack`, `increases attack`, `restores hp`]
     
-        textBox.innerText = ''
+        textBox.innerHTML = ''
         let damage = (user.attack * (user.moves[move_id].power / 10)) / target.defense
-        textBox.innerText = `${user.name} used ${user.moves[move_id].name}!` 
+        textBox.innerHTML = `${user.name} used ${user.moves[move_id].name}!` 
             if (user.moves[move_id].effect_target !== 7 && (user.moves[move_id].effect_target !== 0)){
-                textBox.innerText = textBox.innerText + ` It did ${Math.round(damage)} damage! It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}!`
+                textBox.innerHTML = textBox.innerHTML + ` It did <span class="damage">${Math.round(damage)}</span> damage! It ${effectArrWithNames[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}!`
             } else if (user.moves[move_id].effect_target === 7){
-                textBox.innerText = textBox.innerText + ` It ${effectArray[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect} percent!`
+                textBox.innerHTML = textBox.innerHTML + ` It ${effectArrWithNames[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect} percent!`
             } else {
-                textBox.innerText = textBox.innerText + ` It did ${Math.round(damage)} damage!`
+                textBox.innerHTML = textBox.innerHTML + ` It did <span class="damage">${Math.round(damage)}</span> damage!`
             } 
 }
 

@@ -12,7 +12,7 @@ let ryu = new sound("./css/sound/Ryu_theme.mp3")
 let ff7 = new sound("./css/sound/Fight_on_theme.mp3")
 let guile = new sound("./css/sound/Guile_theme.mp3")
 
-const effectArray = ["none", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
+const effectArray = ["none", `reduces opponent's defense`, "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
 
 
 fetch(BASE_URL + "pets")
