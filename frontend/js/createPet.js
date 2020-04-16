@@ -165,23 +165,6 @@ function createPet() {
   assignStats.addEventListener("click", event => {
     event.preventDefault()
 
-    // if(event.target.className === "plus-hp") {
-    //   if(basePet.stat > 0) {
-    //     basePet.stat -= 1
-    //     basePet.hp += 1
-    //     hp.textContent = ` ${basePet.hp} `
-    //     remainingStat.textContent = ` ${basePet.stat} `
-    //   }
-    // } 
-    // else if(event.target.className === "minus-hp") {
-    //   if(basePet.hp > 1) {
-    //     basePet.stat += 1
-    //     basePet.hp -= 1
-    //     hp.textContent = ` ${basePet.hp} `
-    //     remainingStat.textContent = ` ${basePet.stat} `
-    //   }
-    // }
-    // else 
     if(event.target.className === "plus-attack") {
       if(basePet.stat > 0 && basePet.attack < 30) {
         basePet.stat -= 1
@@ -265,7 +248,7 @@ function createPet() {
         return ""
       }
     }
-
+    
     let effectArray = ["None", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
     moveLi.setAttribute('type', 'checkbox')
     moveLi.setAttribute('class', 'move-li')
@@ -276,28 +259,18 @@ function createPet() {
     moveEffect.innerHTML = `<label> | Power: ${move.power} Effect: ${effectArray[move.effect_target]} ${effectCheck(move)}</label>`
     moveEffects.append(moveEffect)
     moveList.append(moveLi)
+      
+    let checklist = document.querySelectorAll('.move-name')
     
-    let moveCheck = document.querySelectorAll('.move-name')
-    moveLi.addEventListener("input", () => {
+    moveLi.addEventListener("input", event => {
       counter = 0;
-      for(let i = 0; i < moveCheck.length; i++){
-        if(moveCheck[i].checked === true){
+      for(let i = 0; i < checklist.length; i++){
+        if(checklist[i].checked === true){
           counter += 1
         }
       }
-      if(counter >= 4){
-        for(let i = 0; i < moveCheck.length; i++){
-          if(moveCheck[i].checked === false){
-            moveCheck[i].disabled = true
-          }
-        }
-      }
-      else if(counter < 4){
-        for(let i = 0; i < moveCheck.length; i++){
-          if(moveCheck[i].checked === false){
-            moveCheck[i].disabled = false
-          }
-        }
+      if(counter > 4) {
+        event.target.checked = false;
       }
     })
   }
