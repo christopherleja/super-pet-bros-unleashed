@@ -8,6 +8,11 @@
   font-family: "Fipps-Regular";
   src: url("./fonts/Fipps-Regular.otf");
   }
+
+@font-face {
+  font-family: "SSF4";
+  src: url("./fonts/SSF4.ttf");
+  }
     
 :root {
   font-size: 16px;
@@ -42,7 +47,7 @@ header{
   font-family: 'Montserrat Subrayada', sans-serif;
   position: absolute;
   z-index: 10;
-  left: 39.5%;
+  left: 38.5%;
   top: 2rem;
   margin: 0;
   text-shadow: 3px 3px #A53860;
@@ -146,6 +151,12 @@ header{
 #welcome-page {
   margin: 3rem;
   height: 100vh;
+}
+
+.welcome-header {
+  text-transform: uppercase;
+  font-family: 'Fugaz One', cursive;
+  text-shadow: 2px 2px #A53860;
 }
 
 .welcome-header {
@@ -441,7 +452,7 @@ h4#opponentHP {
 .selected-pet {
   position: absolute;
   right: 0;
-  width: 30rem;
+  width: 25rem;
   padding: 2rem;
   display: none;
 }
@@ -478,24 +489,24 @@ footer {
     text-shadow: 3px 3px#61C9A8;
     font-family: 'Montserrat Subrayada', sans-serif;
     display: none;
-    background-image: url(./images/kapow2.png);
+    background-image: url(./images/effects/kapow.png);
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 100;
-    transform: rotate(-28deg);
+    transform: rotate(15deg);
 }
 
  #oppkapow2 {
   width: 9rem;
   height: 12rem;
-  left: 37rem;
+  left: 40rem;
   position: absolute;
-  top: 76px;
+  top: 23px;
   text-shadow: 3px 3px#61C9A8;
   font-family: 'Montserrat Subrayada', sans-serif;
   display: none;
-  background-image: url(./images/kapow2.png);
-  background-size: contain;
+  background-image: url(./images/effects/explosion.gif);
+  background-size: cover;
   background-repeat: no-repeat;
   z-index: 100;
   transform: rotate(15deg);
@@ -510,11 +521,87 @@ footer {
   text-shadow: 3px 3px#61C9A8;
   font-family: 'Montserrat Subrayada', sans-serif;
   display: none;
-  background-image: url(./images/pow.png);
+  background-image: url(./images/effects/pow.png);
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 100;
   transform: rotate(15deg);
+}
+
+#oppkapow4 {
+  width: 15rem;
+  height: 12rem;
+  left: 25rem;
+  position: absolute;
+  top: 3rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/ragnarok.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+#oppkapow5 {
+  width: 9rem;
+  height: 12rem;
+  left: 34rem;
+  position: absolute;
+  top: 4rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/thor.gif);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 100;
+  transform: rotate(20deg);
+}
+
+#oppkapow6 {
+  width: 15rem;
+  height: 12rem;
+  left: 32rem;
+  position: absolute;
+  top: 3rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/ken.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+#oppkapow7 {
+  width: 22rem;
+  height: 14rem;
+  left: 26rem;
+  position: absolute;
+  top: 0rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/akuma.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+#oppkapow8 {
+  width: 15rem;
+  height: 12rem;
+  left: 31rem;
+  position: absolute;
+  top: 1rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/wind.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 100;
 }
 
 #playerkapow1 {
@@ -526,7 +613,7 @@ footer {
     text-shadow: 3px 3px#61C9A8;
     font-family: 'Montserrat Subrayada', sans-serif;
     display: none;
-    background-image: url(./images/pow.png);
+    background-image: url(./images/effects/pow.png);
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 100;
@@ -542,17 +629,142 @@ footer {
   text-shadow: 3px 3px#61C9A8;
   font-family: 'Montserrat Subrayada', sans-serif;
   display: none;
-  background-image: url(./images/kapow2.png);
+  background-image: url(./images/effects/kapow.png);
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 100;
   transform: rotate(-16deg);
 }
 
-@keyframes spin {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
+#playerkapow3 {
+  width: 22rem;
+  height: 12rem;
+  left: 1rem;
+  position: absolute;
+  top: 14rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/ragnarok.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+#playerkapow4 {
+  width: 9rem;
+  height: 12rem;
+  left: 6rem;
+  position: absolute;
+  top: 12rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/thor.gif);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 100;
+  transform: rotate(-26deg);
+}
+
+#playerkapow5 {
+  width: 9rem;
+  height: 12rem;
+  left: 3rem;
+  position: absolute;
+  top: 13rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/wind.gif);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 100;
+  transform: rotate(-3deg);
+}
+
+#playerkapow6 {
+  width: 12rem;
+  height: 12rem;
+  left: 4rem;
+  position: absolute;
+  top: 13rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/ken.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+#playerkapow7 {
+  width: 9rem;
+  height: 12rem;
+  left: 9rem;
+  position: absolute;
+  top: 13rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/effects/explosion.gif);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 100;
+  transform: rotate(-16deg);
 }
 
 
+.fade {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  top: -25px;
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  z-index: 1;
+}
 
+.credit-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 800px;
+  color: white;
+  text-shadow: 1px 1px rgb(25, 33, 56);
+  font-size: 400%;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+  font-family: 'SSF4';
+  text-transform: uppercase;
+}
+
+.crawl {
+  position: relative;
+  top: 99999px;
+  transform-origin: 50% 100%;
+  animation: crawl 30s linear;
+}
+
+.crawl > .credits {
+  font-size: 90%;
+  text-align: center;
+}
+
+.crawl > .credits h1 {
+  margin: 0 0 100px;
+  text-transform: uppercase;
+}
+
+@keyframes crawl {
+    0% {
+    top: -100px;
+    transform: rotateX(20deg)  translateZ(0);
+  }
+    100% { 
+    top: -6000px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}

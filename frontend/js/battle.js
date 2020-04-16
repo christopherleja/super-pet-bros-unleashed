@@ -1,3 +1,6 @@
+const animationDiv = document.createElement('div')
+animationDiv.setAttribute('id', 'opponent-anim')
+
 function renderBattle(playerPet, petObj){
     container.innerHTML = ""
     selectedPetDiv.innerHTML = ""
@@ -12,39 +15,9 @@ function renderBattle(playerPet, petObj){
     setTimeout(() => (startDiv.style.display = "none"), 1000)
     punch.play()
   
-    const animationDiv = document.createElement('div')
-    animationDiv.setAttribute('id', 'opponent-anim')
       
     let setBackground = Math.floor(Math.random() * 4)
     battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
-  
-    
-      function oppAnimation() {
-          let soundArray = [falconpunch, punch, strongpunch, shoryuken, hadouken]
-          let rando = Math.floor(Math.random() * 5)
-          soundArray[rando].play()
-          punch.play()
-  
-          animationDiv.innerHTML = ""
-          
-          let oppkapow1 = document.createElement('div')
-          oppkapow1.setAttribute('id', 'oppkapow1')
-          animationDiv.append(oppkapow1)
-  
-          let oppkapow2 = document.createElement('div')
-          oppkapow2.setAttribute('id', 'oppkapow2')
-          animationDiv.append(oppkapow2)
-  
-          let oppkapow3 = document.createElement('div')
-          oppkapow3.setAttribute('id', 'oppkapow3')
-          animationDiv.append(oppkapow3)
-  
-          let animationArray = [oppkapow1, oppkapow2, oppkapow3, oppkapow3]
-          let random = Math.floor(Math.random() * 3)
-          let animation = animationArray[random]
-          animation.style.display = "inline-block"
-          setTimeout(() => (animation.style.display = "none"), 2000)
-      }
   
       function win() {
           stopSound()
@@ -86,7 +59,7 @@ function renderBattle(playerPet, petObj){
                 break;
         }
     })
-    // ryu.play()
+    ryu.play()
   
     let opponent = Object.assign({}, petObj)
     let player = Object.assign({}, playerPet[0])
@@ -143,7 +116,7 @@ function renderBattle(playerPet, petObj){
       //   debugger
         if (e.target.type === "submit"){
           toggleButtons() 
-          setTimeout(toggleButtons, 1500)
+          setTimeout(toggleButtons, 3500)
         }
         if (e.target.id === "move1"){
             turn(player, opponent, 0)
@@ -172,6 +145,7 @@ function renderBattle(playerPet, petObj){
   
       function opponentTurn(opponent, player, move_id){
           petAttack(opponent, player, opponentAttackId(opponent))
+          playerAnimation()
           updatePlayerHp(player)
           moveEffect(opponent, player, opponentAttackId(opponent))
           battleOverCheck(player, opponent)
@@ -179,6 +153,7 @@ function renderBattle(playerPet, petObj){
   
       function playerTurn(player, opponent, move_id){
           petAttack(player, opponent, move_id)
+          oppAnimation()
           updateOpponentHp(opponent)
           moveEffect(player, opponent, move_id)
           battleOverCheck(player, opponent)
@@ -186,16 +161,14 @@ function renderBattle(playerPet, petObj){
   
       function turn(player, opponent, move_id){
           if (player.speed >= opponent.speed){
-              oppAnimation()
               playerTurn(player, opponent, move_id)
               if(battleOverCheck(player, opponent) === false){
-                  setTimeout(opponentTurn, 1500, opponent, player, move_id) 
+                  setTimeout(opponentTurn, 3000, opponent, player, move_id) 
               }       
           } else if (opponent.speed > player.speed){
-              oppAnimation()
               opponentTurn(opponent, player, move_id)
               if(battleOverCheck(player, opponent) === false){
-                  setTimeout(playerTurn, 1500, player, opponent, move_id)
+                  setTimeout(playerTurn, 3000, player, opponent, move_id)
               }
           }
     }
@@ -294,28 +267,102 @@ function renderBattle(playerPet, petObj){
           textBox.innerHTML = `${user.name} used ${user.moves[move_id].name}!` 
               if (user.moves[move_id].effect_target !== 7 && (user.moves[move_id].effect_target !== 0)){
                   textBox.innerHTML = textBox.innerHTML + ` It did <span class="damage">${Math.round(damage)}</span> damage! It ${effectArrWithNames[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect}!`
-              } else if (user.moves[move_id].effect_target === 7){
+                } else if (user.moves[move_id].effect_target === 7){
                   textBox.innerHTML = textBox.innerHTML + ` It ${effectArrWithNames[user.moves[move_id].effect_target]} by ${user.moves[move_id].effect} percent!`
               } else {
                   textBox.innerHTML = textBox.innerHTML + ` It did <span class="damage">${Math.round(damage)}</span> damage!`
               } 
   }
+
+
+  function oppAnimation() {
+    let soundArray = [falconpunch, punch, strongpunch, shoryuken, hadouken]
+    let rando = Math.floor(Math.random() * 5)
+    soundArray[rando].play()
+    punch.play()
+
+    animationDiv.innerHTML = ""
+    
+    let oppkapow1 = document.createElement('div')
+    oppkapow1.setAttribute('id', 'oppkapow1')
+    animationDiv.append(oppkapow1)
+
+    let oppkapow2 = document.createElement('div')
+    oppkapow2.setAttribute('id', 'oppkapow2')
+    animationDiv.append(oppkapow2)
+
+    let oppkapow3 = document.createElement('div')
+    oppkapow3.setAttribute('id', 'oppkapow3')
+    animationDiv.append(oppkapow3)
+
+    let oppkapow4 = document.createElement('div')
+    oppkapow4.setAttribute('id', 'oppkapow4')
+    animationDiv.append(oppkapow4)
+
+    let oppkapow5 = document.createElement('div')
+    oppkapow5.setAttribute('id', 'oppkapow5')
+    animationDiv.append(oppkapow5)
+
+    let oppkapow6 = document.createElement('div')
+    oppkapow6.setAttribute('id', 'oppkapow6')
+    animationDiv.append(oppkapow6)
+
+    let oppkapow7 = document.createElement('div')
+    oppkapow7.setAttribute('id', 'oppkapow7')
+    animationDiv.append(oppkapow7)
+
+    let oppkapow8 = document.createElement('div')
+    oppkapow8.setAttribute('id', 'oppkapow8')
+    animationDiv.append(oppkapow8)
+
+    let animationArray = [oppkapow1, oppkapow2, oppkapow3, oppkapow4, oppkapow5, oppkapow6, oppkapow7, oppkapow8, oppkapow1]
+    let random = Math.floor(Math.random() * 8)
+    let animation = animationArray[random]
+    animation.style.display = "inline-block"
+    setTimeout(() => (animation.style.display = "none"), 2000)
+}
   
   
-   // function playerAnimation() {
-      //     animationDiv.innerHTML = ""
-      //     let playerkapow1 = document.createElement('div')
-      //     playerkapow1.setAttribute('id', 'playerkapow1')
-      //     animationDiv.append(playerkapow1)
-  
-      //     let playerkapow2 = document.createElement('div')
-      //     playerkapow2.setAttribute('id', 'playerkapow2')
-      //     animationDiv.append(playerkapow2)
-  
-      //     let animationArray = [playerkapow1, playerkapow2, playerkapow1]
-      //     let random = Math.floor(Math.random() * 2)
-      //     let animation = animationArray[random]
-      //     animation.style.display = "inline-block"
-      //     setTimeout(() => (animation.style.display = "none"), 1000)
-      // }
+   function playerAnimation() {
+
+        let soundArray = [falconpunch, punch, strongpunch, shoryuken, hadouken]
+        let rando = Math.floor(Math.random() * 5)
+        soundArray[rando].play()
+        punch.play()
+
+        animationDiv.innerHTML = ""
+        let playerkapow1 = document.createElement('div')
+        playerkapow1.setAttribute('id', 'playerkapow1')
+        animationDiv.append(playerkapow1)
+
+        let playerkapow2 = document.createElement('div')
+        playerkapow2.setAttribute('id', 'playerkapow2')
+        animationDiv.append(playerkapow2)
+
+        let playerkapow3 = document.createElement('div')
+        playerkapow3.setAttribute('id', 'playerkapow3')
+        animationDiv.append(playerkapow3)
+
+        let playerkapow4 = document.createElement('div')
+        playerkapow4.setAttribute('id', 'playerkapow4')
+        animationDiv.append(playerkapow4)
+
+        let playerkapow5 = document.createElement('div')
+        playerkapow5.setAttribute('id', 'playerkapow5')
+        animationDiv.append(playerkapow5)
+
+        let playerkapow6 = document.createElement('div')
+        playerkapow6.setAttribute('id', 'playerkapow6')
+        animationDiv.append(playerkapow6)
+
+        let playerkapow7 = document.createElement('div')
+        playerkapow7.setAttribute('id', 'playerkapow7')
+        animationDiv.append(playerkapow7)
+
+        let animationArray = [playerkapow1, playerkapow2, playerkapow3, playerkapow4, playerkapow5, playerkapow6, playerkapow7, playerkapow1]
+        let random = Math.floor(Math.random() * 7)
+        let animation = animationArray[random]
+        animation.style.display = "inline-block"
+        setTimeout(() => (animation.style.display = "none"), 1000)
+      }
   

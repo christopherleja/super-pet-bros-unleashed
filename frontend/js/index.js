@@ -182,7 +182,36 @@ createTab.addEventListener("click", ()=> {
 })
 
 function credits() {
+    mainRender.innerHTML = ""
 
+    sexySaxophone.play()
+    let div = document.createElement('div')
+    div.setAttribute('class', 'fade')
+
+    let section = document.createElement('section')
+    section.setAttribute('class', 'credit-container')
+
+    let crawl = document.createElement('div')
+    crawl.setAttribute('class', 'crawl')
+
+    let credits = document.createElement('div')
+    credits.setAttribute('class', 'credits')
+    credits.innerHTML = `
+    <br>
+    <br>
+    <h1 id="welcome-header">A TRIPLE C PRODUCTION!!</h1>
+    <br>
+    <h2 id="welcome-header"><strong>C</strong>hris Leja</h2>
+    <br>
+    <h2 id="welcome-header"><strong>C</strong>heung, Eric</h2>
+    <br>
+    <h2 id="welcome-header"><strong>C</strong>lark, Kevin</h2>
+    `
+    crawl.append(credits)
+    section.append(crawl)
+    div.append(section)
+    mainRender.append(div)
+    setTimeout(()=> {sexySaxophone.play(), 0})
 }
 
 displayWelcome()
