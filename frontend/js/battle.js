@@ -10,68 +10,25 @@ function renderBattle(playerPet, petObj){
   const battleDiv = document.createElement('div')
   battleDiv.setAttribute('id', 'battle-div')
 
-  const startDiv = document.createElement('div')
-  startDiv.setAttribute('class', 'start-fight')
-  setTimeout(() => (startDiv.style.display = "none"), 1000)
-  punch.play()
-
-  const animationDiv = document.createElement('div')
-  animationDiv.setAttribute('id', 'opponent-anim')
-    
   let setBackground = Math.floor(Math.random() * 4)
   battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
 
-  
-    function oppAnimation() {
-        let soundArray = [falconpunch, punch, strongpunch, shoryuken, hadouken]
-        let rando = Math.floor(Math.random() * 5)
-        soundArray[rando].play()
-        punch.play()
+//   let message = document.createElement('div')
+//   message.setAttribute('id', 'message')
 
-        animationDiv.innerHTML = ""
-        
-        let oppkapow1 = document.createElement('div')
-        oppkapow1.setAttribute('id', 'oppkapow1')
-        animationDiv.append(oppkapow1)
+//   battleDiv.append(message)
 
-        let oppkapow2 = document.createElement('div')
-        oppkapow2.setAttribute('id', 'oppkapow2')
-        animationDiv.append(oppkapow2)
-
-        let oppkapow3 = document.createElement('div')
-        oppkapow3.setAttribute('id', 'oppkapow3')
-        animationDiv.append(oppkapow3)
-
-        let animationArray = [oppkapow1, oppkapow2, oppkapow3, oppkapow3]
-        let random = Math.floor(Math.random() * 3)
-        let animation = animationArray[random]
-        animation.style.display = "inline-block"
-        setTimeout(() => (animation.style.display = "none"), 2000)
-    }
-
-    function win() {
-        stopSound()
-        startDiv.style.display = "block"
-        startDiv.setAttribute('class', 'win')
-        startDiv.style.backgroundImage = "url('./css/images/victory.png')"
-    }
-    
-    function lose() {
-        stopSound()
-        startDiv.style.display = "block"
-        startDiv.setAttribute('class', 'lose')
-        startDiv.style.backgroundImage = "url('./css/images/gameoverbit.png')"
-    }
-
+  let anim = document.createElement('div')
+  // anim.
 
   const audioDiv = document.createElement('div')
   audioDiv.setAttribute('id', 'audio-player')
   audioDiv.innerHTML = `
-  <button onclick="ryu.playPause()" type="button" class="move-button">Ryu</button>
-  <button onclick="ff7.playPause()" type="button" class="move-button">FF7</button>
-  <button onclick="guile.playPause()" type="button" class="move-button">Guile</button>`
+  <button onclick="ryu.playPause()" type="button">Ryu</button>
+  <button onclick="ff7.playPause()" type="button">FF7</button>
+  <button onclick="guile.playPause()" type="button">Guile</button>`
   petBattleDiv.append(audioDiv)
-  ryu.play()
+//   ryu.play()
 
   let opponent = Object.assign({}, petObj)
   let player = Object.assign({}, playerPet[0])
@@ -128,7 +85,7 @@ function renderBattle(playerPet, petObj){
     //   debugger
       if (e.target.type === "submit"){
         toggleButtons() 
-        setTimeout(toggleButtons, 1500)
+        setTimeout(toggleButtons, 2600)
       }
       if (e.target.id === "move1"){
           turn(player, opponent, 0)
@@ -142,7 +99,7 @@ function renderBattle(playerPet, petObj){
       })
 
       battleDiv.append(opponentDiv, playerPetDiv, textBox)
-      petBattleDiv.append(battleDiv, animationDiv, startDiv)
+      petBattleDiv.append(battleDiv)
       container.append(petBattleDiv)
 
     function updatePlayerHp(player){
@@ -171,13 +128,11 @@ function renderBattle(playerPet, petObj){
 
     function turn(player, opponent, move_id){
         if (player.speed >= opponent.speed){
-            oppAnimation()
-            setTimeout(playerTurn, 100, player, opponent, move_id)          
-            setTimeout(opponentTurn, 1500, opponent, player, move_id)  
+            setTimeout(playerTurn, 100, player, opponent, move_id)            
+            setTimeout(opponentTurn, 2500, opponent, player, move_id)   
         } else if (opponent.speed > player.speed){
-            oppAnimation()
             setTimeout(opponentTurn, 100, opponent, player, move_id)
-            setTimeout(playerTurn, 1500, player, opponent, move_id)
+            setTimeout(playerTurn, 2500, player, opponent, move_id)
         }
         
   }
@@ -251,20 +206,32 @@ function renderBattle(playerPet, petObj){
     if (player.hp <= 0){
         console.log(`${opponent.name} won the battle!`)
         console.log(`${player.name} fainted.`)
-        kirby.play()
-        lose()
-        
+        window.alert("You lose! :(")
+        displayPet(petObj)
         
     } else if (opponent.hp <= 0){
         console.log(`${player.name} won the battle!`)
         console.log(`${opponent.name} fainted.`)
-        pokemonSuccess.play()
-        win()
-        
+        window.alert("You Win!")
+        displayPet(playerPet[0])
     }
   }
   
 }
+
+// function lose() {
+//     let message = document.createElement('div')
+//     battleDiv.append(message)
+//     message.setAttribute('id', 'message')
+//     message.innerHTML = `<h1>YOU'RE A LOSER!!!</h2>`
+//     }
+
+// function win() {
+//     let message = document.createElement('div')
+//     battleDiv.append(message)
+//     message.setAttribute('id', 'message')
+//     message.innerHTML = `<h1>YOU'RE A WINNER!!!</h2>`
+//     }
 
 function displayAttack(user, target, move_id){
     let textBox = document.querySelector('#text-box')
@@ -283,20 +250,3 @@ function displayAttack(user, target, move_id){
             } 
 }
 
-
- // function playerAnimation() {
-    //     animationDiv.innerHTML = ""
-    //     let playerkapow1 = document.createElement('div')
-    //     playerkapow1.setAttribute('id', 'playerkapow1')
-    //     animationDiv.append(playerkapow1)
-
-    //     let playerkapow2 = document.createElement('div')
-    //     playerkapow2.setAttribute('id', 'playerkapow2')
-    //     animationDiv.append(playerkapow2)
-
-    //     let animationArray = [playerkapow1, playerkapow2, playerkapow1]
-    //     let random = Math.floor(Math.random() * 2)
-    //     let animation = animationArray[random]
-    //     animation.style.display = "inline-block"
-    //     setTimeout(() => (animation.style.display = "none"), 1000)
-    // }
