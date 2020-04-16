@@ -47,6 +47,7 @@ function stopSound() {
 function displayWelcome() {
     stopSound()
     container.innerHTML = ""
+    selectedPetDiv.innerHTML = ""
     const welcome = document.createElement('div')
     welcome.setAttribute('id', 'welcome-page')
     const header = document.createElement('h1')
@@ -180,6 +181,8 @@ createTab.addEventListener("click", ()=> {
     createPet()
 })
 
+function credits() {
 
+}
 
 displayWelcome()
