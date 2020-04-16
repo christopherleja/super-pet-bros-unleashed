@@ -29,4 +29,12 @@ function sound(src) {
           this.sound.pause()
       }
   }
+  this.playStop = function(){
+    if(this.sound.paused){
+        this.sound.currentTime = 0
+        this.sound.play()
+    } else {
+        this.sound.pause()
+    }
+  }
 }
