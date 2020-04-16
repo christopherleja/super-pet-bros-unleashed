@@ -107,6 +107,7 @@ function displayPet(petObj) {
 
     let battleButton = document.createElement('button')
     battleButton.id = "battle-btn"
+    
     battleButton.innerText = `Battle ${petObj.name}`
     battleButton.setAttribute('class', 'pet-button')
 
@@ -174,7 +175,6 @@ function selectedPet(petObj) {
 createTab.addEventListener("click", ()=> {
     createPet()
 })
-
 
 function sound(src) {
     this.sound = document.createElement("audio");
