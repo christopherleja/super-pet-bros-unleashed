@@ -2,7 +2,8 @@ function renderBattle(playerPet, petObj){
 
   // change copies to the object's hp
   // change maxhp to the data attribute
-  mainRender.innerHTML = ""
+  container.innerHTML = ""
+  selectedPetDiv.innerHTML = ""
   const petBattleDiv = document.createElement('div')
   petBattleDiv.setAttribute('id', 'pet-battle')
 
@@ -99,7 +100,7 @@ function renderBattle(playerPet, petObj){
 
       battleDiv.append(opponentDiv, playerPetDiv, textBox)
       petBattleDiv.append(battleDiv)
-      mainRender.append(petBattleDiv)
+      container.append(petBattleDiv)
 
     function updatePlayerHp(player){
         let playerHp = document.querySelector("#playerHP")

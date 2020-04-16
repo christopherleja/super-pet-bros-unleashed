@@ -107,6 +107,9 @@ function displayPet(petObj) {
 
     let battleButton = document.createElement('button')
     battleButton.id = "battle-btn"
+    if(playerPet.length > 0) {
+        battleButton.style.display = "block"
+    }
     
     battleButton.innerText = `Battle ${petObj.name}`
     battleButton.setAttribute('class', 'pet-button')

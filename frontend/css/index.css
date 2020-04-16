@@ -234,6 +234,9 @@ h4#opponentHP {
   max-height: 100%;
 }
 
+#battle-btn {
+  display: none;
+}
 
 .pet-image {
   width: 15rem;
