@@ -86,7 +86,7 @@ function renderBattle(playerPet, petObj){
                 break;
         }
     })
-    // ryu.play()
+    ryu.play()
   
     let opponent = Object.assign({}, petObj)
     let player = Object.assign({}, playerPet[0])

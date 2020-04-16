@@ -146,12 +146,18 @@ header{
 #welcome-page {
   margin: 3rem;
   height: 100vh;
+  text-align: center;
 }
 
 .welcome-header {
   text-transform: uppercase;
   font-family: 'Fugaz One', cursive;
   text-shadow: 2px 2px #A53860;
+}
+
+.rules {
+  text-transform: uppercase;
+  font-family: 'Fugaz One', cursive;
 }
 
 #headers {
