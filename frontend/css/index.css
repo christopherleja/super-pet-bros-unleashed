@@ -249,6 +249,11 @@ h4#opponentHP {
   margin: 1rem 1rem;
 }
 
+.create-pet-header {
+  font-family: 'Fugaz One', cursive;
+  text-transform: uppercase;
+}
+
 #pet-battle {
   height: 40rem;
   width: 60rem;
@@ -266,6 +271,51 @@ div#battle-div {
   position: relative;
   top: auto;
   left: 7px;
+}
+
+#opponent-anim {
+  height: 35rem;
+  width: 48rem;
+  padding: 0;
+  top: auto;
+  left: 23rem;
+  position: absolute;
+}
+
+.start-fight {
+  height: 35rem;
+  width: 48rem;
+  padding: 0;
+  top: 9rem;
+  left: 33rem;
+  position: absolute;
+  background-image: url(./images/Fight.png);
+  background-repeat: no-repeat;
+}
+
+.lose {
+  height: 35rem;
+  width: 48rem;
+  padding: 0;
+  top: 0rem;
+  left: 23rem;
+  position: absolute;
+  background-image: url(./images/gameoverbit.png);
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.win {
+  height: 35rem;
+  width: 48rem;
+  padding: 0;
+  top: 0rem;
+  left: 26rem;
+  position: absolute;
+  background-image: url(./images/victory.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
 }
 
 div#opponent-div {
@@ -409,24 +459,97 @@ footer {
   flex-direction: column;
   position: relative;
   left: 5px;
+  top: 0;
 }
 
 #audio-player button {
   width: 70px;
 }
 
-#message {
-  width: 35rem;
+#oppkapow1 {
+    width: 9rem;
+    height: 12rem;
+    left: 29rem;
+    position: absolute;
+    top: 76px;
+    text-shadow: 3px 3px#61C9A8;
+    font-family: 'Montserrat Subrayada', sans-serif;
+    display: none;
+    background-image: url(./images/kapow2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 100;
+    transform: rotate(-28deg);
+}
+
+ #oppkapow2 {
+  width: 9rem;
   height: 12rem;
-  left: 28rem;
+  left: 37rem;
   position: absolute;
   top: 76px;
   text-shadow: 3px 3px#61C9A8;
   font-family: 'Montserrat Subrayada', sans-serif;
-  display: inline-block;
-  background-image: url('./images/comic-kapow1.jpg')
+  display: none;
+  background-image: url(./images/kapow2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 100;
+  transform: rotate(15deg);
 }
 
-#anim {
-  width: 50px;
+#oppkapow3 {
+  width: 9rem;
+  height: 12rem;
+  left: 32rem;
+  position: absolute;
+  top: 0rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/pow.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 100;
+  transform: rotate(15deg);
 }
+
+#playerkapow1 {
+  width: 9rem;
+    height: 12rem;
+    left: 12rem;
+    position: absolute;
+    top: 16rem;
+    text-shadow: 3px 3px#61C9A8;
+    font-family: 'Montserrat Subrayada', sans-serif;
+    display: none;
+    background-image: url(./images/pow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 100;
+    transform: rotate(15deg);
+}
+
+#playerkapow2 {
+  width: 9rem;
+  height: 12rem;
+  left: 6rem;
+  position: absolute;
+  top: 10rem;
+  text-shadow: 3px 3px#61C9A8;
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: none;
+  background-image: url(./images/kapow2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 100;
+  transform: rotate(-16deg);
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+
+

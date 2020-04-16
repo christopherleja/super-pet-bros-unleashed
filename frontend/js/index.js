@@ -11,9 +11,6 @@ const battleTab = document.querySelector(".battle-tab")
 
 
 const backgrounds = ["./css/images/liquorstore.jpeg", "./css/images/forestscape.jpg", "./css/images/mountainscape.jpg", "./css/images/pixelbackground.jpg"]
-let ryu = new sound("./css/sound/Ryu_theme.mp3")
-let ff7 = new sound("./css/sound/Fight_on_theme.mp3")
-let guile = new sound("./css/sound/Guile_theme.mp3")
 
 const effectArray = ["none", `reduces opponent's defense`, "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
 
@@ -48,9 +45,7 @@ function stopSound() {
 }
 
 function displayWelcome() {
-    ryu.stop()
-    ff7.stop()
-    guile.stop()
+    stopSound()
     container.innerHTML = ""
     const welcome = document.createElement('div')
     welcome.setAttribute('id', 'welcome-page')
@@ -63,9 +58,7 @@ function displayWelcome() {
 }
   
 function displayPet(petObj) {
-    ryu.stop()
-    ff7.stop()
-    guile.stop()
+    stopSound()
 
     container.innerHTML = ""
     petDetailDiv.setAttribute('id', 'pet-details')
@@ -178,27 +171,5 @@ function selectedPet(petObj) {
 createTab.addEventListener("click", ()=> {
     createPet()
 })
-
-function sound(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function(){
-        this.sound.play();
-    }
-    this.stop = function(){
-        this.sound.pause();
-    }    
-    this.playPause = function(){
-        if(this.sound.paused){
-            this.sound.play()
-        } else {
-            this.sound.pause()
-        }
-    }
-}
 
 displayWelcome()

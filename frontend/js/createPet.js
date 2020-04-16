@@ -7,7 +7,7 @@ function createPet() {
     name: "",
     image_url: "",
     stat: 8,
-    hp: 30,
+    hp: 40,
     attack: 6,
     defense: 6,
     speed: 6
@@ -22,7 +22,7 @@ function createPet() {
   }
 
   petCreateDiv.innerHTML = `
-  <h1>Create your Super Pet!</h1>
+  <h1 class="create-pet-header">Create your Super Pet!</h1>
   <form class="pet-form">
     <strong>Name: </strong><input type="text" class="pet-name" name="name" /><br>
     <strong>Image: </strong><input type="text" class="pet-image-url" name="pet_image_url" />
@@ -215,7 +215,7 @@ function createPet() {
     }
     else if(event.target.className === "default") {
       basePet.stat = 8
-      basePet.hp = 30
+      basePet.hp = 40
       basePet.attack = 6
       basePet.defense = 6
       basePet.speed = 6
