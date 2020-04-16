@@ -55,7 +55,7 @@ function renderBattle(playerPet, petObj){
         startDiv.setAttribute('class', 'win')
         startDiv.style.backgroundImage = "url('./css/images/victory.png')"
         let moveButtons = document.querySelectorAll(".move-button")
-        moveButtons.forEach(button => button.disabled = true)
+        moveButtons.forEach(button => button.disabled = !button.disabled)
     }
     
     function lose() {
@@ -64,8 +64,7 @@ function renderBattle(playerPet, petObj){
         startDiv.setAttribute('class', 'lose')
         startDiv.style.backgroundImage = "url('./css/images/gameoverbit.png')"
         let moveButtons = document.querySelectorAll(".move-button")
-        moveButtons.forEach(button => button.disabled = true)
-
+        moveButtons.forEach(button => button.disabled = !button.disabled)
     }
 
 
@@ -133,9 +132,7 @@ function renderBattle(playerPet, petObj){
     //   debugger
       if (e.target.type === "submit"){
         toggleButtons() 
-        if (!battleOverCheck){
-            setTimeout(toggleButtons, 2700)
-        }
+        setTimeout(toggleButtons, 1500)
       }
       if (e.target.id === "move1"){
           turn(player, opponent, 0)
@@ -154,12 +151,12 @@ function renderBattle(playerPet, petObj){
 
     function updatePlayerHp(player){
         let playerHp = document.querySelector("#playerHP")
-        playerHp.innerHTML = `HP: ${Math.round(player.hp)} / ${playerPet[0].hp}`
+        playerHp.innerHTML = `HP: ${Math.ceil(player.hp)} / ${playerPet[0].hp}`
     }
 
     function updateOpponentHp(opponent){
         let opponentHp = document.querySelector("#opponentHP")
-        opponentHp.innerHTML = `HP: ${Math.round(opponent.hp)} / ${petObj.hp}`
+        opponentHp.innerHTML = `HP: ${Math.ceil(opponent.hp)} / ${petObj.hp}`
     }
 
     function opponentTurn(opponent, player, move_id){
@@ -179,14 +176,17 @@ function renderBattle(playerPet, petObj){
     function turn(player, opponent, move_id){
         if (player.speed >= opponent.speed){
             oppAnimation()
-            setTimeout(playerTurn, 100, player, opponent, move_id)          
-            setTimeout(opponentTurn, 2500, opponent, player, move_id)  
+            playerTurn(player, opponent, move_id)
+            if(battleOverCheck(player, opponent) === false){
+                setTimeout(opponentTurn, 1500, opponent, player, move_id) 
+            }       
         } else if (opponent.speed > player.speed){
             oppAnimation()
-            setTimeout(opponentTurn, 100, opponent, player, move_id)
-            setTimeout(playerTurn, 2500, player, opponent, move_id)
+            opponentTurn(opponent, player, move_id)
+            if(battleOverCheck(player, opponent) === false){
+                setTimeout(playerTurn, 1500, player, opponent, move_id)
+            }
         }
-        
   }
   
   function petAttack(user, target, move_id){
@@ -203,6 +203,8 @@ function renderBattle(playerPet, petObj){
   }
   
   function moveEffect(user, target, move_id){
+    let playerHp = document.querySelector("#playerHP")
+    let opponentHp = document.querySelector("#opponentHP")
     switch (user.moves[move_id].effect_target){
         case 0:
             break
@@ -258,17 +260,17 @@ function renderBattle(playerPet, petObj){
         console.log(`${player.name} fainted.`)
         kirby.play()
         lose()
-        
-        
-    } else if (opponent.hp <= 0){
+        return true
+    } else if (Math.floor(opponent.hp) <= 0){
         console.log(`${player.name} won the battle!`)
         console.log(`${opponent.name} fainted.`)
         pokemonSuccess.play()
         win()
-        
+        return true
+    } else {
+        return false
     }
   }
-  
 }
 
 function displayAttack(user, target, move_id){
