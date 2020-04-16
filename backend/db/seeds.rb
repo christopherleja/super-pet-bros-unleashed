@@ -26,12 +26,14 @@ move12 = Move.create(name: "Tackle", power: 70, effect: 1, effect_target: 0)
 move13 = Move.create(name: "Tippy Taps", power: 0, effect: 30, effect_target: 7)
 move14 = Move.create(name: "Sleep", power: 0, effect: 50, effect_target: 7)
 
+move15 = Move.create(name: "HyperBeam", power: 9999, effect: 100, effect_target: 0)
+
 pet1 = Pet.create(name: "Chairman Meow", hp: 50, attack: 13, defense: 11, speed: 12, pet_image_url: "https://images.theconversation.com/files/312307/original/file-20200128-81416-1bjupq6.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop")
 pet2 = Pet.create(name: "Leon Trotsky", hp: 65, attack: 14, defense: 12, speed: 9, pet_image_url: "https://149359219.v2.pressablecdn.com/wp-content/uploads/2017/08/horse.jpg")
 pet3 = Pet.create(name: "Notorious DOG", hp: 55, attack: 11, defense: 15, speed: 8, pet_image_url: "https://s3.amazonaws.com/petcentral.com/wp-content/uploads/2019/11/25163421/wrinkly-dog-neapolitan.jpg")
 pet4 = Pet.create(name: "Ravioli", hp: 45, attack: 11, defense: 11, speed: 11, pet_image_url: "https://emborapets.com/wp-content/uploads/2019/04/pug.jpg")
 pet5 = Pet.create(name: "Undead Grumpy Cat", hp: 70, attack: 13, defense: 8, speed: 8, pet_image_url: "https://ktar.com/wp-content/uploads/2019/05/grumpy-cat-getty.jpg")
-
+pet6 = Pet.create(name: "Balrog", hp: 1, attack: 9999, defense: 1, speed: 9999, pet_image_url: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Extra_flotation_devices.jpg")
 
 Joiner.create(pet_id: pet1.id, move_id: move3.id)
 Joiner.create(pet_id: pet1.id, move_id: move9.id)
@@ -57,4 +59,9 @@ Joiner.create(pet_id: pet5.id, move_id: move3.id)
 Joiner.create(pet_id: pet5.id, move_id: move6.id)
 Joiner.create(pet_id: pet5.id, move_id: move7.id)
 Joiner.create(pet_id: pet5.id, move_id: move9.id)
+
+Joiner.create(pet_id: pet6.id, move_id: move15.id)
+Joiner.create(pet_id: pet6.id, move_id: move6.id)
+Joiner.create(pet_id: pet6.id, move_id: move7.id)
+Joiner.create(pet_id: pet6.id, move_id: move9.id)
 
