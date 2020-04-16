@@ -1,5 +1,6 @@
 function createPet() {
   container.innerHTML = ""
+  selectedPetDiv.innerHTML = ""
   const petCreateDiv = document.createElement('div')
   petCreateDiv.setAttribute('id', 'pet-create')
 
@@ -309,7 +310,6 @@ function createPet() {
         renderPet(petObj.data.attributes)
         displayPet(petObj.data.attributes)
       })
-    
 
   })
   container.append(petCreateDiv)
