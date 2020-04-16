@@ -315,6 +315,10 @@ div#text-box{
   font-size: 12px;
 }
 
+span.damage{
+  color: red;
+}
+
 img#player{
   border-radius: 25%;
 }
