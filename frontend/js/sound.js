@@ -8,6 +8,7 @@ let shoryuken = new sound("./css/sound/fight/shoryuken.mp3")
 let strongpunch = new sound("./css/sound/fight/strongpunch.mp3")
 let kirby = new sound("./css/sound/fight/kirby.mp3")
 let pokemonSuccess = new sound("./css/sound/fight/pokemonSuccess.mp3")
+let sexySaxophone = new sound("./css/sound/sexySaxophone.mp3")
 
 function sound(src) {
   this.sound = document.createElement("audio");

@@ -42,7 +42,7 @@ header{
   font-family: 'Montserrat Subrayada', sans-serif;
   position: absolute;
   z-index: 10;
-  left: 38.5%;
+  left: 39.5%;
   top: 2rem;
   margin: 0;
   text-shadow: 3px 3px #A53860;
@@ -57,7 +57,7 @@ header{
 .navbar-ul {
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #61C9A8;
   height: 2.5rem;
   font-size: 2rem;
@@ -103,7 +103,6 @@ header{
 
 .create-tab {
   position: relative;
-  left: 20px;
 }
 
 .pets-tab:hover {
@@ -302,6 +301,7 @@ div#battle-div {
   position: absolute;
   background-image: url(./images/gameoverbit.png);
   background-repeat: no-repeat;
+  image-rendering: pixelated;
   display: block;
 }
 
@@ -440,7 +440,10 @@ h4#opponentHP {
 
 .selected-pet {
   position: absolute;
-  right: 3rem;
+  right: 0;
+  width: 30rem;
+  padding: 2rem;
+  display: none;
 }
 
 footer {

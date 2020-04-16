@@ -47,6 +47,7 @@ function stopSound() {
 function displayWelcome() {
     stopSound()
     container.innerHTML = ""
+    selectedPetDiv.innerHTML = ""
     const welcome = document.createElement('div')
     welcome.setAttribute('id', 'welcome-page')
     const header = document.createElement('h1')
@@ -61,8 +62,10 @@ function displayPet(petObj) {
     stopSound()
 
     container.innerHTML = ""
+    selectedPetDiv.style.display = "inline-block"
     petDetailDiv.setAttribute('id', 'pet-details')
     petDetailDiv.innerHTML = `
+    <h1 class="welcome-header">Champion</h1>
     <img class="pet-image" src="${petObj['pet-image-url']}"><br />
     <h2 id="pet-name">${petObj.name}</h2>
     <ul class="pet-stat-ul">
@@ -123,6 +126,11 @@ function displayPet(petObj) {
                 battleButton.style.display = "block"
             }
     })
+
+    if(!!playerPet[0]) {
+        selectedPet(playerPet[0])
+    }
+
     battleButton.addEventListener("click", function(e){
         e.preventDefault()
         if (playerPet.length === 1){
@@ -134,8 +142,9 @@ function displayPet(petObj) {
 }
 
 function selectedPet(petObj) {
+    selectedPetDiv.style.display = "block"
     selectedPetDiv.innerHTML = `
-    <h1 class="welcome-header">Selected Pet</h1>
+    <h1 class="welcome-header">Chosen Champion</h1>
     <img class="pet-image" src="${petObj['pet-image-url']}"><br />
     <h2 id="pet-name">${petObj.name}</h2>
     <ul class="pet-stat-ul">
@@ -171,5 +180,9 @@ function selectedPet(petObj) {
 createTab.addEventListener("click", ()=> {
     createPet()
 })
+
+function credits() {
+
+}
 
 displayWelcome()
