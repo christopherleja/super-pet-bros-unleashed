@@ -54,6 +54,8 @@ function renderBattle(playerPet, petObj){
         startDiv.style.display = "block"
         startDiv.setAttribute('class', 'win')
         startDiv.style.backgroundImage = "url('./css/images/victory.png')"
+        let moveButtons = document.querySelectorAll(".move-button")
+        moveButtons.forEach(button => button.disabled = true)
     }
     
     function lose() {
@@ -61,6 +63,9 @@ function renderBattle(playerPet, petObj){
         startDiv.style.display = "block"
         startDiv.setAttribute('class', 'lose')
         startDiv.style.backgroundImage = "url('./css/images/gameoverbit.png')"
+        let moveButtons = document.querySelectorAll(".move-button")
+        moveButtons.forEach(button => button.disabled = true)
+
     }
 
   const audioDiv = document.createElement('div')
@@ -127,7 +132,9 @@ function renderBattle(playerPet, petObj){
     //   debugger
       if (e.target.type === "submit"){
         toggleButtons() 
-        setTimeout(toggleButtons, 1500)
+        if (!battleOverCheck){
+            setTimeout(toggleButtons, 2700)
+        }
       }
       if (e.target.id === "move1"){
           turn(player, opponent, 0)
@@ -172,11 +179,11 @@ function renderBattle(playerPet, petObj){
         if (player.speed >= opponent.speed){
             oppAnimation()
             setTimeout(playerTurn, 100, player, opponent, move_id)          
-            setTimeout(opponentTurn, 1500, opponent, player, move_id)  
+            setTimeout(opponentTurn, 2500, opponent, player, move_id)  
         } else if (opponent.speed > player.speed){
             oppAnimation()
             setTimeout(opponentTurn, 100, opponent, player, move_id)
-            setTimeout(playerTurn, 1500, player, opponent, move_id)
+            setTimeout(playerTurn, 2500, player, opponent, move_id)
         }
         
   }
@@ -195,8 +202,6 @@ function renderBattle(playerPet, petObj){
   }
   
   function moveEffect(user, target, move_id){
-    let playerHp = document.querySelector("#playerHP")
-    let opponentHp = document.querySelector("#opponentHP")
     switch (user.moves[move_id].effect_target){
         case 0:
             break
