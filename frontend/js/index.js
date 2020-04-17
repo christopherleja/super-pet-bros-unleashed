@@ -38,11 +38,6 @@ function renderPet(petObj){
     })
 }
 
-function stopSound() {
-    ryu.stop()
-    ff7.stop()
-    guile.stop()
-}
 
 function displayWelcome() {
     stopSound()

@@ -25,7 +25,7 @@ function renderBattle(playerPet, petObj){
           startDiv.setAttribute('class', 'win')
           startDiv.style.backgroundImage = "url('./css/images/victory.png')"
           let moveButtons = document.querySelectorAll(".move-button")
-          moveButtons.forEach(button => button.disabled = !button.disabled)
+          moveButtons.forEach(button => button.disabled = true)
       }
       
       function lose() {
@@ -34,7 +34,7 @@ function renderBattle(playerPet, petObj){
           startDiv.setAttribute('class', 'lose')
           startDiv.style.backgroundImage = "url('./css/images/gameoverbit.png')"
           let moveButtons = document.querySelectorAll(".move-button")
-          moveButtons.forEach(button => button.disabled = !button.disabled)
+          moveButtons.forEach(button => button.disabled = true)
       }
   
   
@@ -43,7 +43,8 @@ function renderBattle(playerPet, petObj){
     audioDiv.innerHTML = `
     <button type="button" class="move-button">Ryu</button>
     <button type="button" class="move-button">FF7</button>
-    <button type="button" class="move-button">Guile</button>`
+    <button type="button" class="move-button">Guile</button>
+    <button type="button" class="move-button" onclick="stopSound()">Stop</button>`
     petBattleDiv.append(audioDiv)
     audioDiv.addEventListener("click", e => {
         stopSound()
@@ -244,16 +245,12 @@ function renderBattle(playerPet, petObj){
           console.log(`${player.name} fainted.`)
           kirby.play()
           lose()
-          let moveButtons = document.querySelectorAll(".move-button")
-          moveButtons.forEach(button => button.disabled = !button.disabled)
           return true
       } else if (Math.floor(opponent.hp) <= 0){
           console.log(`${player.name} won the battle!`)
           console.log(`${opponent.name} fainted.`)
           pokemonSuccess.play()
           win()
-          let moveButtons = document.querySelectorAll(".move-button")
-          moveButtons.forEach(button => button.disabled = !button.disabled)
           return true
       } else {
           return false
