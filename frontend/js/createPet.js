@@ -251,6 +251,7 @@ function createPet() {
     }
     
     let effectArray = ["None", "reduces opponent's defense", "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
+    moveList.append(moveLi)
     moveLi.setAttribute('type', 'checkbox')
     moveLi.setAttribute('class', 'move-li')
     moveLi.setAttribute('name', `${move.name}`)
@@ -259,21 +260,46 @@ function createPet() {
     moveLi.innerHTML = `<input type="checkbox" class="move-name" name="${move.name}">${move.name}</input>`
     moveEffect.innerHTML = `<label> | Power: ${move.power} Effect: ${effectArray[move.effect_target]} ${effectCheck(move)}</label>`
     moveEffects.append(moveEffect)
-    moveList.append(moveLi)
+    
       
     let checklist = document.querySelectorAll('.move-name')
+    let list = Array.from(checklist)
     
-    moveLi.addEventListener("input", event => {
-      counter = 0;
-      for(let i = 0; i < checklist.length; i++){
-        if(checklist[i].checked === true){
-          counter += 1
+    let newArray = []
+    list.forEach(move=>{
+      move.addEventListener("input", event => {
+        console.log(event.target.name)
+        if(!newArray.includes(move.name)){
+          newArray.push(move.name)
+        } else if (newArray.includes(move.name)){
+          let index = newArray.indexOf(move.name)
+          newArray.splice(index, 1)
         }
-      }
-      if(counter > 4) {
-        event.target.checked = false;
-      }
-    })
+        if (newArray.length >= 4){
+          let array = list.filter(item => !newArray.includes(item.name))
+          array.forEach(item => item.disabled = true)
+        } else if(newArray.length < 4) {
+          list.forEach(item => item.disabled = false)
+        }
+
+
+      console.log(newArray)
+    })})
+      
+      
+      
+      // for(let obj in checklist){
+      //   if(checklist[obj].checked){
+      //     console.log("in the loop", checklist[obj])
+      //     counter += 1
+      //     console.log("in the loop", counter)
+      //   }
+      // }
+      // if(counter > 4) {
+      //   event.target.checked = false;
+      // }
+      // console.log("out of the loop", counter)
+  //   })
   }
 
   petCreateDiv.addEventListener("submit", event => {
