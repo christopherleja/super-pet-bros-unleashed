@@ -16,7 +16,7 @@ function renderBattle(playerPet, petObj){
     punch.play()
   
       
-    let setBackground = Math.floor(Math.random() * 3)
+    let setBackground = Math.floor(Math.random() * 4)
     battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
   
       function win() {

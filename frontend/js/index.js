@@ -10,7 +10,7 @@ const createTab = document.querySelector(".create-tab")
 const battleTab = document.querySelector(".battle-tab")
 
 
-const backgrounds = ["./css/images/liquorstore.jpeg", "./css/images/forestscape.jpg", "./css/images/pixelbackground.jpg"] //"./css/images/mountainscape.jpg",
+const backgrounds = ["./css/images/liquorstore.jpeg", "./css/images/forestscape.jpg", "./css/images/mountainscape.jpg", "./css/images/pixelbackground.jpg"]
 
 const effectArray = ["none", `reduces opponent's defense`, "increases defense", "lowers opponent's speed", "increases speed", "lowers opponent's attack", "increases attack", "restores hp"]
 
