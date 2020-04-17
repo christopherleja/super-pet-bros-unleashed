@@ -768,7 +768,7 @@ footer {
   position: relative;
   height: 800px;
   color: white;
-  text-shadow: 1px 1px rgb(25, 33, 56);
+  text-shadow: 6px 6px rgb(25, 33, 56);
   font-size: 400%;
   font-weight: 600;
   letter-spacing: 6px;
