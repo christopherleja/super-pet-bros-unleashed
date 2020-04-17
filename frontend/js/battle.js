@@ -16,7 +16,7 @@ function renderBattle(playerPet, petObj){
     punch.play()
   
       
-    let setBackground = Math.floor(Math.random() * 4)
+    let setBackground = Math.floor(Math.random() * 3)
     battleDiv.style.backgroundImage = `url(${backgrounds[setBackground]})`
   
       function win() {
@@ -24,6 +24,7 @@ function renderBattle(playerPet, petObj){
           startDiv.style.display = "block"
           startDiv.setAttribute('class', 'win')
           startDiv.style.backgroundImage = "url('./css/images/victory.png')"
+          opphp.style.width = "0px"
           let moveButtons = document.querySelectorAll(".move-button")
           moveButtons.forEach(button => button.disabled = true)
       }
@@ -33,6 +34,7 @@ function renderBattle(playerPet, petObj){
           startDiv.style.display = "block"
           startDiv.setAttribute('class', 'lose')
           startDiv.style.backgroundImage = "url('./css/images/gameoverbit.png')"
+          playerhp.style.width = "0px"
           let moveButtons = document.querySelectorAll(".move-button")
           moveButtons.forEach(button => button.disabled = true)
       }
@@ -71,14 +73,36 @@ function renderBattle(playerPet, petObj){
     <img class="pet-image" id="opponent" src="${opponent['pet-image-url']}"><br />
     <h2 id="pet-name">${opponent.name}</h2>
     <h4 id="opponentHP" data-opponent-hp='${opponent.hp}'>HP: ${opponent.hp} / ${petObj.hp}</h4>
+    <div class="opphpbar"><div class="opphp"></div></div>
     `
+
+    let opphpbar = opponentDiv.querySelector('.opphpbar')
+    opphpbar.style.width = "100px"
+    opphpbar.style.height = "15px"
+    opphpbar.style.border = "2px solid black"
+    let opphp = opponentDiv.querySelector('.opphp')
+    opphp.style.backgroundColor = "rgb(94, 204, 238)"
+    opphp.style.width = `${(opponent.hp/petObj.hp) * 100}px`
+    opphp.style.height = "15px"
+
     let playerPetDiv = document.createElement('div')
     playerPetDiv.id = "player-pet-div"
     playerPetDiv.innerHTML = `
     <img class="pet-image" id="player" src="${player['pet-image-url']}"><br />
     <h2 id="pet-name">${player.name}</h2>
     <h4 id="playerHP" data-player-hp='${player.hp}'>HP: ${player.hp} / ${playerPet[0].hp}</h4>
+    <div class="playerhpbar"><div class="playerhp"></div></div>
     `
+
+    let playerhpbar = playerPetDiv.querySelector('.playerhpbar')
+    playerhpbar.style.width = "100px"
+    playerhpbar.style.height = "15px"
+    playerhpbar.style.border = "2px solid black"
+    let playerhp = playerPetDiv.querySelector('.playerhp')
+    playerhp.style.backgroundColor = "rgb(94, 204, 238)"
+    playerhp.style.width = `${(playerPet.hp/playerPet[0].hp) * 100}px`
+    playerhp.style.height = "15px"
+
     let buttonDiv = document.createElement('div')
     buttonDiv.id = "button-div"
     // STRETCH use for loop to build the div with createElement
@@ -137,11 +161,19 @@ function renderBattle(playerPet, petObj){
       function updatePlayerHp(player){
           let playerHp = document.querySelector("#playerHP")
           playerHp.innerHTML = `HP: ${Math.ceil(player.hp)} / ${playerPet[0].hp}`
+          playerhp.style.width = `${Math.round((player.hp/playerPet[0].hp * 100))}px`
+          if(Math.round((player.hp / playerPet[0].hp) * 100) < 40) {
+            playerhp.style.backgroundColor = "red"
+            }
       }
   
       function updateOpponentHp(opponent){
           let opponentHp = document.querySelector("#opponentHP")
           opponentHp.innerHTML = `HP: ${Math.ceil(opponent.hp)} / ${petObj.hp}`
+          opphp.style.width = `${Math.round((opponent.hp/petObj.hp * 100))}px`
+          if(Math.round((opponent.hp / petObj.hp) * 100) < 40) {
+            opphp.style.backgroundColor = "red"
+            }
       }
   
       function opponentTurn(opponent, player, move_id){
